@@ -7,7 +7,13 @@ const db = await JSONFilePreset('db.json', defaultData)
 const markets = db.data.markets;
 
 export async function createMarket(req, res) {
-  const id = markets.length + 1;
+  const ids = markets.map(market => market.id);
+  let smallestMissingId = 1;
+  while (ids.includes(smallestMissingId)) {
+    smallestMissingId++;
+  }
+  
+  const id = smallestMissingId;
   const name = req.body.name;
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
