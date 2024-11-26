@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 16 # Use a version suitable for all microservices
+          node-version: 22.11.0 # Use a version suitable for all microservices
 
       # Discover 'code' directories and run ESLint
       - name: Run ESLint in 'code' directories
@@ -35,7 +35,18 @@ jobs:
             npm install eslint --save-dev
             # Generate a default ESLint configuration if missing
             if [ ! -f .eslintrc.json ]; then
-              npx eslint --init --config "eslint:recommended" --no-interactive
+              echo '{
+                "extends": "eslint:recommended",
+                "env": {
+                  "browser": true,
+                  "es2021": true,
+                  "node": true
+                },
+                "parserOptions": {
+                  "ecmaVersion": 12,
+                  "sourceType": "module"
+                }
+              }' > .eslintrc.json
             fi
             # Run ESLint
             npx eslint . || exit 1
