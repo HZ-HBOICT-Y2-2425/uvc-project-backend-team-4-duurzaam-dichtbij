@@ -29,7 +29,11 @@ jobs:
             parent_dir=$(basename $(dirname $dir))
             echo "Running ESLint in $parent_dir/code"
             cd $dir
+            # Install project dependencies
             npm install
-            npm run lint || exit 1
+            # Ensure ESLint is installed
+            npm install eslint --save-dev
+            # Run ESLint
+            npx eslint . || exit 1
             cd -
           done
