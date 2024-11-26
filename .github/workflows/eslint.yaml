@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.11.0 # Use a version suitable for all microservices
+          node-version: 16 # Use a version suitable for all microservices
 
       # Discover 'code' directories and run ESLint
       - name: Run ESLint in 'code' directories
@@ -29,10 +29,14 @@ jobs:
             parent_dir=$(basename $(dirname $dir))
             echo "Running ESLint in $parent_dir/code"
             cd $dir
-            # Install project dependencies
+            # Install dependencies
             npm install
             # Ensure ESLint is installed
             npm install eslint --save-dev
+            # Generate a default ESLint configuration if missing
+            if [ ! -f .eslintrc.json ]; then
+              npx eslint --init --config "eslint:recommended" --no-interactive
+            fi
             # Run ESLint
             npx eslint . || exit 1
             cd -
