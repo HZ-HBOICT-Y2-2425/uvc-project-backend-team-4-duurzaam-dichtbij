@@ -8,6 +8,12 @@ const microserviceProxy = createProxyMiddleware({
   changeOrigin: true
 });
 
+const shopsProxy = createProxyMiddleware({
+  target: 'http://shops:3012',
+  changeOrigin: true
+});
+
 router.use('/microservice', microserviceProxy);
+router.use('/winkels', shopsProxy);
 
 export default router;
