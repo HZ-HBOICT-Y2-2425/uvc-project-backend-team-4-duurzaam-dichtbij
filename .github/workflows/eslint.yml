@@ -35,18 +35,15 @@ jobs:
             npm install eslint --save-dev
             # Generate a default ESLint configuration if missing
             if [ ! -f .eslintrc.json ]; then
-              echo '{
-                "extends": "eslint:recommended",
-                "env": {
-                  "browser": true,
-                  "es2021": true,
-                  "node": true
-                },
-                "parserOptions": {
-                  "ecmaVersion": 12,
-                  "sourceType": "module"
-                }
-              }' > .eslintrc.json
+              echo 'export default [
+                        {
+                            rules: {
+                                semi: "error",
+                                "prefer-const": "error"
+                            }
+                        } 
+                    ];' 
+            > eslint.config.js
             fi
             # Run ESLint
             npx eslint . || exit 1
