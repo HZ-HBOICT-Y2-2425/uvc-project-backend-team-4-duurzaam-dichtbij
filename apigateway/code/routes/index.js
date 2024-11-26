@@ -14,6 +14,6 @@ const shopsProxy = createProxyMiddleware({
 });
 
 router.use('/microservice', microserviceProxy);
-router.use('/winkels', shopsProxy);
+router.use('/shops', shopsProxy);
 
 export default router;
