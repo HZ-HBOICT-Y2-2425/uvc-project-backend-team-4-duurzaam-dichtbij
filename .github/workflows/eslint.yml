@@ -34,18 +34,14 @@ jobs:
             # Ensure ESLint is installed
             npm install eslint --save-dev
             # Generate a default ESLint configuration if missing
-            if [ ! -f .eslintrc.json ]; then
-              echo 'export default [
-                        {
-                            rules: {
-                                semi: "error",
-                                "prefer-const": "error"
-                            }
-                        } 
-                    ];' 
-            > eslint.config.js
+            if [ ! -f .eslintrc.js ]; then
+              echo 'module.exports = {
+                rules: {
+                  semi: ["error", "always"],
+                  "prefer-const": ["error"]
+                }
+              };' > .eslintrc.js
             fi
-            # Run ESLint
             npx eslint . || exit 1
             cd -
           done
