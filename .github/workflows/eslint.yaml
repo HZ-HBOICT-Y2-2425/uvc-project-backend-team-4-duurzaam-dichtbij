@@ -11,20 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    # Set up Node.js
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22.11.0 # Use the version your project requires
+      # Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0 # Use a version suitable for all microservices
 
-    # Install dependencies
-    - name: Install Dependencies
-      run: npm install
-
-    # Run ESLint
-    - name: Run ESLint
-      run: npm run lint
+      # Discover 'code' directories and run ESLint
+      - name: Run ESLint in 'code' directories
+        run: |
+          # Find all 'code' directories containing package.json
+          for dir in $(find . -type d -name "code" -exec test -e {}/package.json \; -print); do
+            parent_dir=$(basename $(dirname $dir))
+            echo "Running ESLint in $parent_dir/code"
+            cd $dir
+            npm install
+            npm run lint || exit 1
+            cd -
+          done
