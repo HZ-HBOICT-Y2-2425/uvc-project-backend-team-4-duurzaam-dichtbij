@@ -32,10 +32,10 @@ export async function createShop(req, res) {
   const payingMethods = req.body.payingMethods;
   const userID = req.body.userID;
 
-  if (!name || !address.city || !address.address || !userID) {
+  if (!name || !address.city || !address.address || !userID || !openingHours) {
     return res.status(400).send('Missing required fields');
   } else {
-    markets.push({
+    shops.push({
       id: id,
       name: name,
       address: address,
@@ -49,7 +49,11 @@ export async function createShop(req, res) {
     res.status(201).send(`Shop created with name: ${name} `);
   }
 }
-
+/**
+ * aquire list of shops
+ * @param {*} req 
+ * @param {*} res 
+ */
 export async function responseShops(req, res) {
   res.status(200).send(shops);
 }

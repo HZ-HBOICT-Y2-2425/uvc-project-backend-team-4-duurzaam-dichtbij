@@ -7,10 +7,10 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   res.json('hi');
 });
-router.get('/winkels', checkName, responseShops);
-router.post('/winkels', checkName, createShop);
-router.get('/winkels/:param', checkName, responseShop);
-router.put('/winkels/:id', checkName, updateShop);
-router.delete('/winkels/:id', checkName, deleteShop);
+router.get('/shops', checkName, responseShops);
+router.post('/shops', checkName, createShop);
+router.get('/shops/:param', checkName, responseShop);
+router.put('/shops/:id', checkName, updateShop);
+router.delete('/shops/:id', checkName, deleteShop);
 
 export default router;
