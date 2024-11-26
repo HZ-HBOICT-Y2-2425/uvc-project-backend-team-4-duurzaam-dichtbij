@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@latest
+        uses: actions/checkout@v4
 
       - name: Set up Docker
-        uses: docker/setup-buildx-action@latest
+        uses: docker/setup-buildx-action@v3
 
       - name: Run Super Linter in Docker
         run: |
