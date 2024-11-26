@@ -6,7 +6,11 @@ const defaultData = { meta: {"tile": "List of shops","date": "November 2024"}, s
 const db = await JSONFilePreset('db.json', defaultData)
 const shops = db.data.shops;
 
-export async function getAvailableId() {
+export function getAvailableId() {
+  if (shops.length === 0) {
+    return 1;
+  }
+
   const ids = shops.map(shop => shop.id);
   const availableId = Math.max(...ids) + 1;
   return availableId;
@@ -21,13 +25,13 @@ export async function createShop(req, res) {
   const name = req.body.name;
   const phoneNumber = req.body.phonenumber;
   const openingHours = {
-    monday: req.body.openingHours.monday,
-    tuesday: req.body.openingHours.tuesday,
-    wednesday: req.body.openingHours.wednesday,
-    thursday: req.body.openingHours.thursday,
-    friday: req.body.openingHours.friday,
-    saturday: req.body.openingHours.saturday,
-    sunday: req.body.openingHours.sunday
+    monday: req.body.openingHours.monday || 'closed',
+    tuesday: req.body.openingHours.tuesday || 'closed',
+    wednesday: req.body.openingHours.wednesday || 'closed',
+    thursday: req.body.openingHours.thursday || 'closed',
+    friday: req.body.openingHours.friday || 'closed',
+    saturday: req.body.openingHours.saturday || 'closed',
+    sunday: req.body.openingHours.sunday || 'closed'
   };
   const payingMethods = req.body.payingMethods;
   const userID = req.body.userID;
@@ -76,7 +80,7 @@ export async function responseShop(req, res) {
 
 export async function updateShop(req, res) {
   const id = parseInt(req.params.id); // Extract the shop ID from the URL parameter
-  const shop = markets.find(shop => shop.id === id); // Find the shop by ID
+  const shop = shops.find(shop => shop.id === id); // Find the shop by ID
 
   if (!shop) {
     return res.status(404).send(`Shop with ID: ${id} not found`);
@@ -124,14 +128,14 @@ export async function updateShop(req, res) {
 
 export async function deleteShop(req, res) {
   const id = req.params.id;
-  const shop = shop.find(shop => shop.id === Number(id));
+  const shop = shops.find(shop => shop.id === Number(id));
 
   if (shop) {
     shops.splice(shops.indexOf(shop), 1);
     await db.write();
 
-    res.status(200).send(`Market deleted with id: ${id}`);
+    res.status(200).send(`Shop deleted with id: ${id}`);
   } else {
-    res.status(404).send('Market not found');
+    res.status(404).send('Shop not found');
   }
 }
