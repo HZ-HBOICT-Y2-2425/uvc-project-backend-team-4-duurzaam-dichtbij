@@ -1,7 +1,10 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+
+dotenv.config({ path: 'variables.env' });
 
 const RECIPE_API_URL = "https://api.spoonacular.com/recipes";
-const RECIPE_API_KEY = "ac398f9ad252433e8b4da48efdce492a"; 
+const RECIPE_API_KEY = process.env.RECIPE_API_KEY;
 
 // Fetch all recipes with a search term
 export async function getRecipes(req, res) {
@@ -30,7 +33,9 @@ export async function getRecipeById(req, res) {
 
     try {
         const response = await axios.get(`${RECIPE_API_URL}/${recipeId}/information`, {
-            params: { apiKey: RECIPE_API_KEY }
+            params: { 
+                apiKey: RECIPE_API_KEY 
+            }
         });
 
         res.status(200).json(response.data);
@@ -46,7 +51,9 @@ export async function getRecipeIngredients(req, res) {
 
     try {
         const response = await axios.get(`${RECIPE_API_URL}/${recipeId}/ingredientWidget.json`, {
-            params: { apiKey: RECIPE_API_KEY }
+            params: { 
+                apiKey: RECIPE_API_KEY 
+            }
         });
 
         res.status(200).json(response.data);
@@ -62,7 +69,9 @@ export async function getRecipeInstructions(req, res) {
 
     try {
         const response = await axios.get(`${RECIPE_API_URL}/${recipeId}/analyzedInstructions`, {
-            params: { apiKey: RECIPE_API_KEY }
+            params: { 
+                apiKey: RECIPE_API_KEY
+            }
         });
 
         res.status(200).json(response.data);
