@@ -1,7 +1,6 @@
 services:
   microservice:
-    container_name: microservice
-    build: ./microservice
+    image: node:21.7.3 
     volumes:
       - ./microservice/code:/usr/src/app
     networks:
@@ -9,10 +8,21 @@ services:
     ports:
       - "3011:3011"
     working_dir: /usr/src/app
-    command: bash -c "npm install && npm run dev"
+    command: bash -c "npm install --no-audit && npm run dev"
+
+  shops:
+    image: node:21.7.3 
+    volumes:
+      - ./shops/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "3012:3012"
+    working_dir: /usr/src/app
+    command: bash -c "npm install --no-audit && npm run dev"
+    
   gateway:
-    container_name: apigateway
-    build: ./apigateway
+    image: node:21.7.3
     volumes:
       - ./apigateway/code:/usr/src/app
     networks:
@@ -20,7 +30,7 @@ services:
     ports:
       - "3010:3010"
     working_dir: /usr/src/app
-    command: bash -c "npm install && npm run dev"
+    command: bash -c "npm install --no-audit && npm run dev"
 
 networks:
   msexample:
