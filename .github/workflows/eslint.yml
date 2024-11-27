@@ -1,0 +1,59 @@
+name: ESLint Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0 # Use a version suitable for all microservices
+
+      # Discover 'code' directories and run ESLint
+      - name: Run ESLint in 'code' directories
+        run: |
+          # Initialize a flag to track errors
+          lint_failed=0
+
+          # Find all 'code' directories containing package.json
+          for dir in $(find . -type d -name "code" -exec test -e {}/package.json \; -print); do
+            parent_dir=$(basename $(dirname $dir))
+            echo "Running ESLint in $parent_dir/code"
+            cd $dir
+            # Install dependencies
+            npm install
+            # Ensure ESLint is installed
+            npm install eslint --save-dev
+            # Generate a default ESLint configuration if missing
+            if [ ! -f eslint.config.js ]; then
+              echo 'export default [
+                        {
+                            rules: {
+                                semi: "error",
+                                "prefer-const": "error"
+                            }
+                        }
+                    ];' > eslint.config.js
+            fi
+            # Run ESLint and capture the exit code
+            npx eslint . || lint_failed=1
+            cd -
+          done
+
+          # Exit the workflow with an error if any linting failed
+          if [ $lint_failed -eq 1 ]; then
+            echo "ESLint found issues in one or more microservices. Please fix them."
+            exit 1
+          fi
