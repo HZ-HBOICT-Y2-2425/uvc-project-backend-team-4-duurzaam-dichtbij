@@ -7,7 +7,11 @@ const microserviceProxy = createProxyMiddleware({
   target: 'http://microservice:3011',
   changeOrigin: true
 });
+const productsProxy = createProxyMiddleware({
+  target: 'http://products:3013',
+  changeOrigin: true
+});
 
 router.use('/microservice', microserviceProxy);
-
+router.use('/products', productsProxy);
 export default router;
