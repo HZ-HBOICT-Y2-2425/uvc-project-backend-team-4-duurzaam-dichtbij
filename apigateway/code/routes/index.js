@@ -1,4 +1,5 @@
 import express from 'express';
+import recipesRouter from './recipe.js';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 const router = express.Router();
 
@@ -13,5 +14,6 @@ const productsProxy = createProxyMiddleware({
 });
 
 router.use('/microservice', microserviceProxy);
+router.use('/recipes', recipesRouter);
 router.use('/products', productsProxy);
 export default router;
