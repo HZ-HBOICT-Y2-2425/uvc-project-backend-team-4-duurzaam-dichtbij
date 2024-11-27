@@ -2,8 +2,8 @@ import { JSONFilePreset } from "lowdb/node";
 
 // Read or create db.json
 // defaultData specifies the structure of the database
-const defaultData = { meta: {"tile": "List of markets","date": "November 2024"}, markets : [] }
-const db = await JSONFilePreset('db.json', defaultData)
+const defaultData = { meta: {"tile": "List of markets","date": "November 2024"}, markets : [] };
+const db = await JSONFilePreset('db.json', defaultData);
 const markets = db.data.markets;
 
 export async function createMarket(req, res) {
@@ -15,7 +15,7 @@ export async function createMarket(req, res) {
   const location = {
     city: req.body.location.city,
     address: req.body.location.address
-  }
+  };
   const comments = [];
 
   if (!name || !startDate || !endDate || !description || !location.city || !location.address) {
