@@ -7,18 +7,18 @@ const db = await JSONFilePreset('db.json', defaultData);
 const products = db.data.products;
 export async function createProducts(req, res) {
   try {
-    const { name, InSeason, CarbonDioxide } = req.body;
-    if (!name || InSeason === undefined || CarbonDioxide === undefined) {
+    const { name, inSeason, carbonDioxide } = req.body;
+    if (!name || inSeason === undefined || carbonDioxide === undefined) {
       return res.status(400).json({
-        error: "Missing required fields: 'name', 'InSeason', 'CarbonDioxide'.",
+        error: "Missing required fields: 'name', 'inSeason', 'carbonDioxide'.",
       });
     }  
 
     const newProduct = {
       id: uuidv4(),
       name,
-      InSeason,
-      CarbonDioxide,
+      inSeason,
+      carbonDioxide,
     };
 
     products.push(newProduct);
@@ -66,7 +66,7 @@ export async function responseProduct(req, res) {
 export async function updateProduct(req, res) {
   try {
     const { param } = req.params; 
-    const { name, InSeason, CarbonDioxide } = req.body; 
+    const { name, inSeason, carbonDioxide } = req.body; 
 
    
     const productIndex = products.findIndex((product) => product.id === param || product.name === param);
@@ -75,8 +75,8 @@ export async function updateProduct(req, res) {
       return res.status(404).json({ error: `Product with ID: ${param} not found.` });
     }
     if (name !== undefined) products[productIndex].name = name;
-    if (InSeason !== undefined) products[productIndex].InSeason = InSeason;
-    if (CarbonDioxide !== undefined)products[productIndex].CarbonDioxide = CarbonDioxide;
+    if (inSeason !== undefined) products[productIndex].inSeason = inSeason;
+    if (carbonDioxide !== undefined)products[productIndex].carbonDioxide = carbonDioxide;
 
     await db.write(); 
     res.status(200).json({
