@@ -2,7 +2,7 @@ import { JSONFilePreset } from "lowdb/node";
 
 // Read or create db.json
 // defaultData specifies the structure of the database
-const defaultData = { meta: {"tile": "List of animals","date": "September 2024"}, animals : [] }
+const defaultData = { meta: {"tile": "List of animals","date": "September 2024"}, animals : [] };
 const db = await JSONFilePreset('db.json', defaultData);
 const animals = db.data.animals;
 
