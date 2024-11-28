@@ -1,23 +1,30 @@
 import { jest } from '@jest/globals';
-import { createMarket, responseMarkets, responseMarket, updateMarket, deleteMarket } from '../controllers/marketController.js';
+import { getDB, setDB } from '../controllers/marketController.js';
 import supertest from 'supertest';
 import { app } from '../start.js'
-import { JSONFilePreset } from 'lowdb/node';
+import { Low, Memory } from 'lowdb';
 
 // Default data used in the controller
 const defaultData = { meta: { "tile": "List of markets", "date": "November 2024" }, markets: [] };
 let db;
 
+let oldDb = null;
+
 beforeEach(async () => {
-  // Initialize the database with the correct structure
-  db = await JSONFilePreset('db.json', defaultData);
-  db.data.markets = []; // Initialize with empty list of markets
+  // Use in-memory database for tests
+  const adapter = new Memory();
+  db = new Low(adapter, defaultData);
+  db.data = JSON.parse(JSON.stringify(defaultData)); // Deep clone default data
+  await db.write();
+
+  oldDb = getDB();
+  setDB(db);
 });
 
 afterEach(async () => {
-  // Clear all market records added during tests
   db.data.markets = [];
-  await db.write(); // Write the changes back to the file
+  await db.write();
+  setDB(oldDb);
 });
 
 describe('Market Controller', () => {
@@ -26,8 +33,8 @@ describe('Market Controller', () => {
   it('should create a market with valid data', async () => {
     const newMarket = {
       name: 'Market 1',
-      startDate: '2024-12-01',
-      endDate: '2024-12-10',
+      startDate: '2024-12-30T13:00:00.000Z',
+      endDate: '2024-12-30T17:00:00.000Z',
       description: 'A great market',
       location: { city: 'City1', address: 'Street1' }
     };
@@ -42,8 +49,8 @@ describe('Market Controller', () => {
     
     expect(db.data.markets).toHaveLength(1); // Ensure one market is added
     expect(db.data.markets[0].name).toBe('Market 1'); // Check the market name
-    expect(res.status).toHaveBeenCalledWith(201); // Ensure response status is 201
-    expect(res.send).toHaveBeenCalledWith(`Market created with name: ${newMarket.name}`); // Check send message
+    expect(res.status).toBe(201); // Ensure response status is 201
+    expect(res.text).toBe(`Market created with name: ${newMarket.name}`); // Check send message
   });
 
   /*

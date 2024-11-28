@@ -3,8 +3,19 @@ import { JSONFilePreset } from "lowdb/node";
 // Read or create db.json
 // defaultData specifies the structure of the database
 const defaultData = { meta: {"tile": "List of markets","date": "November 2024"}, markets : [] };
-const db = await JSONFilePreset('db.json', defaultData);
-const markets = db.data.markets;
+let db = await JSONFilePreset('db.json', defaultData);
+let markets = db.data.markets;
+
+export function getDB() {
+  if (db === undefined) {
+    throw new Error('Wait for the database to load...');
+  }
+  return db;
+}
+export function setDB(newDb) {
+  db = newDb;
+  markets = newDb.data.markets;
+}
 
 export async function createMarket(req, res) {
   const id = markets.length + 1;
