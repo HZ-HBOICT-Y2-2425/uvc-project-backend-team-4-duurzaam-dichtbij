@@ -3,6 +3,7 @@ import { getDB, setDB } from '../controllers/marketController.js';
 import supertest from 'supertest';
 import { app } from '../start.js'
 import { Low, Memory } from 'lowdb';
+import e from 'express';
 
 // Default data used in the controller
 const defaultData = { meta: { "tile": "List of markets", "date": "November 2024" }, markets: [] };
@@ -53,95 +54,82 @@ describe('Market Controller', () => {
     expect(res.text).toBe(`Market created with name: ${newMarket.name}`); // Check send message
   });
 
-  /*
   it('should return a list of all markets', async () => {
-    db.data.markets.push({
-      id: 1,
-      name: 'Market 1',
-      startDate: '2024-12-01',
-      endDate: '2024-12-10',
-      description: 'A great market',
-      location: { city: 'City1', address: 'Street1' }
-    });
+    const res = await supertest(app).get('/markets');
 
-    const req = {};
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-      send: jest.fn()  // Mock send
-    };
-
-    await responseMarkets(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(200); // Check if status is 200
-    expect(res.send).toHaveBeenCalledWith(db.data.markets); // Ensure the markets are sent
+    expect(res.status).toBe(200); // Ensure response status is 200
+    expect(res.body).toEqual(db.data.markets); // Ensure the response body matches the database
   });
 
   it('should update a market successfully', async () => {
     const market = {
-      id: 1,
       name: 'Market 1',
-      startDate: '2024-12-01',
-      endDate: '2024-12-10',
+      startDate: '2024-12-30T13:00:00.000Z',
+      endDate: '2024-12-30T17:00:00.000Z',
       description: 'A great market',
       location: { city: 'City1', address: 'Street1' }
     };
 
-    db.data.markets.push(market); // Add a market to the db
+    const res1 = await supertest(app)
+      .post('/markets')
+      .send(market)
+      .set('Accept', 'application/json');
 
-    const updatedMarket = { name: 'Updated Market' };
-    const req = { params: { id: '1' }, body: updatedMarket };
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-      send: jest.fn()  // Mock send
+    expect(res1.status).toBe(201); // Ensure response status is 201
+    expect(db.data.markets).toHaveLength(1); // Ensure one market is added
+    expect(db.data.markets[0].name).toBe('Market 1'); // Check the market name
+    expect(res1.text).toBe(`Market created with name: ${market.name}`); // Check send message
+
+
+    const updatedMarket = {
+      name: 'Market 2',
+      startDate: '2024-12-20',
+      endDate: '2024-12-30',
+      description: 'An even better market',
+      location: { city: 'City2', address: 'Street2' }
     };
 
-    await updateMarket(req, res);
+    const res2 = await supertest(app)
+      .put('/market/1')
+      .send(updatedMarket)
+      .set('Accept', 'application/json');
 
-    expect(db.data.markets[0].name).toBe('Updated Market'); // Ensure the market name was updated
-    expect(res.status).toHaveBeenCalledWith(200); // Check response status
-    expect(res.send).toHaveBeenCalledWith(`Market updated with id: 1`); // Check send message
+    expect(db.data.markets[0].name).toBe('Market 2'); // Ensure the market is updated
+    expect(db.data.markets).toHaveLength(1);
+    expect(res2.status).toBe(200); // Check response status
+    expect(res2.text).toBe(`Market updated with id: 1`); // Check send message
   });
 
   it('should delete a market successfully', async () => {
     const market = {
-      id: 1,
       name: 'Market 1',
-      startDate: '2024-12-01',
-      endDate: '2024-12-10',
+      startDate: '2024-12-30T13:00:00.000Z',
+      endDate: '2024-12-30T17:00:00.000Z',
       description: 'A great market',
       location: { city: 'City1', address: 'Street1' }
     };
 
-    db.data.markets.push(market); // Add a market to the db
+    const res1 = await supertest(app)
+      .post('/markets')
+      .send(market)
+      .set('Accept', 'application/json');
 
-    const req = { params: { id: '1' } };
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-      send: jest.fn()  // Mock send
-    };
+    expect(res1.status).toBe(201); // Ensure response status is 201
+    expect(db.data.markets).toHaveLength(1); // Ensure one market is added
+    expect(db.data.markets[0].name).toBe('Market 1'); // Check the market name
+    expect(res1.text).toBe(`Market created with name: ${market.name}`); // Check send message
 
-    await deleteMarket(req, res);
+    const res2 = await supertest(app).delete('/market/1');
 
     expect(db.data.markets).toHaveLength(0); // Ensure the market is deleted
-    expect(res.status).toHaveBeenCalledWith(200); // Check response status
-    expect(res.send).toHaveBeenCalledWith(`Market deleted with id: 1`); // Check send message
+    expect(res2.status).toBe(200); // Check response status
+    expect(res2.text).toBe(`Market deleted with id: 1`); // Check send message
   });
 
   it('should return 404 if market not found', async () => {
-    const req = { params: { id: '999' } };
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-      send: jest.fn()  // Mock send
-    };
+    const res = await supertest(app).get('/market/1');
 
-    await deleteMarket(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(404); // Check status for not found
-    expect(res.send).toHaveBeenCalledWith('Market not found'); // Check message
+    expect(res.status).toBe(404); // Ensure response status is 404
+    expect(res.text).toBe('Market not found'); // Check send message
   });
-  */
 });
