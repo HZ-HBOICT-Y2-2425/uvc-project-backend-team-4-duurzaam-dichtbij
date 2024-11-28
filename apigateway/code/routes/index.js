@@ -9,7 +9,7 @@ const microserviceProxy = createProxyMiddleware({
 });
 
 const shopsProxy = createProxyMiddleware({
-  target: 'http://shops:3012',
+  target: 'http://shops:3014',
   changeOrigin: true
 });
 
