@@ -2,8 +2,8 @@ import { JSONFilePreset } from "lowdb/node";
 
 // Read or create db.json
 // defaultData specifies the structure of the database
-const defaultData = { meta: {"tile": "List of shops","date": "November 2024"}, shops : [] }
-const db = await JSONFilePreset('db.json', defaultData)
+const defaultData = { meta: {"tile": "List of shops","date": "November 2024"}, shops : [] };
+const db = await JSONFilePreset('db.json', defaultData);
 const shops = db.data.shops;
 
 export function getAvailableId() {
@@ -21,7 +21,7 @@ export async function createShop(req, res) {
   const address = {
     city: req.body.location.city,
     address: req.body.location.address
-  }
+  };
   const name = req.body.name;
   const phoneNumber = req.body.phonenumber;
   const openingHours = {
