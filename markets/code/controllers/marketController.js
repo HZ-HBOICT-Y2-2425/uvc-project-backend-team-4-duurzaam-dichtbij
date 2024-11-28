@@ -100,11 +100,13 @@ export async function updateMarket(req, res) {
     if (req.body.description) {
       market.description = req.body.description;
     }
-    if (req.body.city) {
-      market.location.city = req.body.city;
-    }
-    if (req.body.address) {
-      market.location.address = req.body.address;
+    if (req.body.location) {
+      if (req.body.location.city) {
+        market.location.city = req.body.location.city;
+      }
+      if (req.body.location.address) {
+        market.location.address = req.body.location.address;
+      }
     }
     await db.write();
 
@@ -113,6 +115,7 @@ export async function updateMarket(req, res) {
     res.status(404).send('Market not found');
   }
 }
+
 
 export async function deleteMarket(req, res) {
   const id = req.params.id;
