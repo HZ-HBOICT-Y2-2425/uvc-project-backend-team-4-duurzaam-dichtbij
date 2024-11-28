@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "tile": "List of shops",
+    "date": "November 2024"
+  },
+  "shops": [
+    {
+      "id": {},
+      "name": "LA Boutique",
+      "address": {
+        "city": "Los Angeles",
+        "address": "789 Sunset Blvd"
+      },
+      "phoneNumber": "9876543210",
+      "openingHours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM"
+      },
+      "payingMethods": [
+        "Cash"
+      ],
+      "userID": 7
+    }
+  ]
+}
