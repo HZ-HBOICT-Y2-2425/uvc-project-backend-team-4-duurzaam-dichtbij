@@ -32,6 +32,17 @@ services:
     working_dir: /usr/src/app
     command: bash -c "npm install --no-audit && npm run dev"
 
+  markets:
+    image: node:21.7.3
+    volumes:
+      - ./markets/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "3012:3012"
+    working_dir: /usr/src/app
+    command: bash -c "npm install --no-audit && npm run dev"  
+
   gateway:
     image: node:21.7.3
     volumes:
@@ -42,18 +53,6 @@ services:
       - "3010:3010"
     working_dir: /usr/src/app
     command: bash -c "npm install --no-audit && npm run dev"
-    
-  markets:
-    container_name: markets
-    build: ./markets
-    volumes:
-      - ./markets/code:/usr/src/app
-    networks:
-      - msexample
-    ports:
-      - "3012:3012"
-    working_dir: /usr/src/app
-    command: bash -c "npm install && npm run dev"
 
 networks:
   msexample:

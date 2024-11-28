@@ -40,14 +40,11 @@ const shopsProxy = createProxyMiddleware({
   target: 'http://shops:3014',
   changeOrigin: true
 });
-
-router.use('/microservice', microserviceProxy);
-router.use('/shops', shopsProxy);
 // Use CORS middleware
 router.use(cors(corsOptions));
 
-
 router.use('/microservice', microserviceProxy);
+router.use('/shops', shopsProxy);
 router.use('/recipes', recipesRouter);
 router.use('/products', productsProxy);
 router.use('/markets', marketsProxy);
