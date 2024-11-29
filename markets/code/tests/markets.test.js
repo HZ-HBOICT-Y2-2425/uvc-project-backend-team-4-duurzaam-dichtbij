@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 import { getDB, setDB } from '../controllers/marketController.js';
 import supertest from 'supertest';
-import { app } from '../start.js';
+import { app, server } from '../start.js';
 import { Low, Memory } from 'lowdb';
 import e from 'express';
 
@@ -28,8 +28,11 @@ afterEach(async () => {
   setDB(oldDb);
 });
 
+afterAll(() => {
+  server.close(); // Ensure the server shuts down
+});
+
 describe('Market Controller', () => {
-  jest.setTimeout(20000);
 
   it('should create a market with valid data', async () => {
     const newMarket = {
