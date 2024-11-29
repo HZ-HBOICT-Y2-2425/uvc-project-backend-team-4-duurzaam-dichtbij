@@ -3,8 +3,19 @@ import { JSONFilePreset } from "lowdb/node";
 // Read or create db.json
 // defaultData specifies the structure of the database
 const defaultData = { meta: {"tile": "List of markets","date": "November 2024"}, markets : [] };
-const db = await JSONFilePreset('db.json', defaultData);
-const markets = db.data.markets;
+let db = await JSONFilePreset('db.json', defaultData);
+let markets = db.data.markets;
+
+export function getDB() {
+  if (db === undefined) {
+    throw new Error('Wait for the database to load...');
+  }
+  return db;
+}
+export function setDB(newDb) {
+  db = newDb;
+  markets = newDb.data.markets;
+}
 
 export async function createMarket(req, res) {
   const ids = markets.map(market => market.id);
@@ -95,11 +106,13 @@ export async function updateMarket(req, res) {
     if (req.body.description) {
       market.description = req.body.description;
     }
-    if (req.body.city) {
-      market.location.city = req.body.city;
-    }
-    if (req.body.address) {
-      market.location.address = req.body.address;
+    if (req.body.location) {
+      if (req.body.location.city) {
+        market.location.city = req.body.location.city;
+      }
+      if (req.body.location.address) {
+        market.location.address = req.body.location.address;
+      }
     }
     await db.write();
 
@@ -108,6 +121,7 @@ export async function updateMarket(req, res) {
     res.status(404).send('Market not found');
   }
 }
+
 
 export async function deleteMarket(req, res) {
   const id = req.params.id;

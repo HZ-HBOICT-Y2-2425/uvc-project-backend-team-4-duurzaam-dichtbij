@@ -5,7 +5,7 @@
   },
   "markets": [
     {
-      "id": 2,
+      "id": 1,
       "name": "Boerenmarkt",
       "startDate": "2024-11-30T13:00:00.000Z",
       "endDate": "2024-11-30T17:00:00.000Z",
@@ -13,6 +13,42 @@
       "location": {
         "city": "Middelburg",
         "address": "Kousteensedijk 7"
+      },
+      "comments": []
+    },
+    {
+      "id": 2,
+      "name": "Local Farmers' Market",
+      "startDate": "2024-12-01T09:00:00.000Z",
+      "endDate": "2024-12-01T14:00:00.000Z",
+      "description": "A vibrant market featuring local produce and crafts.",
+      "location": {
+        "city": "Rotterdam",
+        "address": "Market Square 15"
+      },
+      "comments": []
+    },
+    {
+      "id": 3,
+      "name": "Local Farmers' Market",
+      "startDate": "2024-12-01T09:00:00.000Z",
+      "endDate": "2024-12-01T14:00:00.000Z",
+      "description": "A vibrant market featuring local produce and crafts.",
+      "location": {
+        "city": "Rotterdam",
+        "address": "Market Square 15"
+      },
+      "comments": []
+    },
+    {
+      "id": 4,
+      "name": "Local Farmers' Market",
+      "startDate": "2024-12-01T09:00:00.000Z",
+      "endDate": "2024-12-01T14:00:00.000Z",
+      "description": "A vibrant market featuring local produce and crafts.",
+      "location": {
+        "city": "Rotterdam",
+        "address": "Market Square 15"
       },
       "comments": []
     }
