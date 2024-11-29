@@ -24,8 +24,9 @@ jobs:
       # Discover 'code' directories and run ESLint
       - name: Run tests in market microservice
         run: |
-          npm install
           cd markets/code
+          npm install
+          npm install jest
           npm test
           
           
