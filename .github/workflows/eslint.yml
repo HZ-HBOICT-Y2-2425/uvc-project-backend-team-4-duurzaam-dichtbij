@@ -35,7 +35,7 @@ jobs:
             # Install dependencies
             npm install
             # Ensure ESLint is installed
-            npm install eslint --save-dev
+            npm install eslint-plugin-security eslint-plugin-unicorn eslint-plugin-sonarjs --save-dev
             # Generate a default ESLint configuration if missing
             if [ ! -f eslint.config.js ]; then
               echo 'import securityPlugin from "eslint-plugin-security";
@@ -61,7 +61,7 @@ jobs:
                             "sonarjs/cognitive-complexity": ["warn", 15], // Warn for high cognitive complexity
                         }
                     }
-                ];' > eslint.config.js
+                ];' > eslint.config.mjs
             fi
             # Run ESLint and capture the exit code
             npx eslint . || lint_failed=1
