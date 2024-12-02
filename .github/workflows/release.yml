@@ -1,0 +1,68 @@
+name: Build and Release Docker Image
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger this workflow when a version tag is pushed (e.g., v1.0.0)
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Verify Docker Compose Installation
+        run: docker-compose --version
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push all microservices
+        run: |
+          docker compose build
+          docker compose push
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./shops/code/**/*  # Include files from shops microservice
+            ./products/code/**/*  # Include files from products microservice
+            ./markets/code/**/*  # Include files from markets microservice
+            ./microservice/code/**/*  # Include files from microservice
+            ./apigateway/code/**/*  # Include files from apigateway
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+      - name: Upload release assets (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-assets
+          path: |
+            ./shops/code/**/*  # Include files from shops microservice
+            ./products/code/**/*  # Include files from products microservice
+            ./markets/code/**/*  # Include files from markets microservice
+            ./microservice/code/**/*  # Include files from microservice
+            ./apigateway/code/**/*  # Include files from apigateway
