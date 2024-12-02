@@ -48,11 +48,11 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./shops/code/**
-            ./products/code/**
-            ./markets/code/**
-            ./microservice/code/**
-            ./apigateway/code/**
+            ./shops/code/**/*  # Include files from shops microservice
+            ./products/code/**/*  # Include files from products microservice
+            ./markets/code/**/*  # Include files from markets microservice
+            ./microservice/code/**/*  # Include files from microservice
+            ./apigateway/code/**/*  # Include files from apigateway
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
@@ -61,8 +61,8 @@ jobs:
         with:
           name: release-assets
           path: |
-            ./shops/code/**
-            ./products/code/**
-            ./markets/code/**
-            ./microservice/code/**
-            ./apigateway/code/**
+            ./shops/code/**/*  # Include files from shops microservice
+            ./products/code/**/*  # Include files from products microservice
+            ./markets/code/**/*  # Include files from markets microservice
+            ./microservice/code/**/*  # Include files from microservice
+            ./apigateway/code/**/*  # Include files from apigateway
