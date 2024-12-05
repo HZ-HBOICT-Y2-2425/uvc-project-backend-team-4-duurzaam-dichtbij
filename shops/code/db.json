@@ -1,25 +1,124 @@
 {
   "meta": {
-    "tile": "List of shops",
+    "title": "List of shops",
     "date": "November 2024"
   },
   "shops": [
     {
-      "id": {},
-      "name": "LA Boutique",
+      "id": 1,
+      "name": "Zeeland Fresh Market",
       "address": {
-        "city": "Los Angeles",
-        "address": "789 Sunset Blvd"
+        "city": "Middelburg",
+        "address": "Lange Delft 5"
       },
-      "phoneNumber": "9876543210",
+      "phoneNumber": "0118123456",
       "openingHours": {
-        "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM"
+        "monday": "9:00 AM - 5:30 PM",
+        "tuesday": "9:00 AM - 5:30 PM",
+        "wednesday": "9:00 AM - 5:30 PM",
+        "thursday": "9:00 AM - 8:00 PM",
+        "friday": "9:00 AM - 5:30 PM",
+        "saturday": "9:00 AM - 4:00 PM",
+        "sunday": "Closed"
       },
       "payingMethods": [
-        "Cash"
+        "Cash",
+        "Card"
       ],
-      "userID": 7
+      "userID": 101
+    },
+    {
+      "id": 2,
+      "name": "Domburg Delights",
+      "address": {
+        "city": "Domburg",
+        "address": "Weststraat 10"
+      },
+      "phoneNumber": "0118356789",
+      "openingHours": {
+        "monday": "10:00 AM - 6:00 PM",
+        "tuesday": "10:00 AM - 6:00 PM",
+        "wednesday": "10:00 AM - 6:00 PM",
+        "thursday": "10:00 AM - 6:00 PM",
+        "friday": "10:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 5:00 PM",
+        "sunday": "12:00 PM - 4:00 PM"
+      },
+      "payingMethods": [
+        "Cash",
+        "Card",
+        "Mobile Payment"
+      ],
+      "userID": 102
+    },
+    {
+      "id": 3,
+      "name": "Vlissingen Vintage",
+      "address": {
+        "city": "Vlissingen",
+        "address": "Walstraat 25"
+      },
+      "phoneNumber": "0118475623",
+      "openingHours": {
+        "monday": "10:00 AM - 5:00 PM",
+        "tuesday": "10:00 AM - 5:00 PM",
+        "wednesday": "10:00 AM - 5:00 PM",
+        "thursday": "10:00 AM - 8:00 PM",
+        "friday": "10:00 AM - 5:00 PM",
+        "saturday": "10:00 AM - 5:00 PM",
+        "sunday": "Closed"
+      },
+      "payingMethods": [
+        "Card",
+        "Mobile Payment"
+      ],
+      "userID": 103
+    },
+    {
+      "id": 4,
+      "name": "Zierikzee Specialties",
+      "address": {
+        "city": "Zierikzee",
+        "address": "Keetenstraat 2"
+      },
+      "phoneNumber": "0111567890",
+      "openingHours": {
+        "monday": "Closed",
+        "tuesday": "10:00 AM - 5:30 PM",
+        "wednesday": "10:00 AM - 5:30 PM",
+        "thursday": "10:00 AM - 5:30 PM",
+        "friday": "10:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 4:00 PM",
+        "sunday": "Closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Card"
+      ],
+      "userID": 104
+    },
+    {
+      "id": 5,
+      "name": "Goes Gourmet",
+      "address": {
+        "city": "Goes",
+        "address": "Oude Markt 7"
+      },
+      "phoneNumber": "0113423456",
+      "openingHours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "Closed"
+      },
+      "payingMethods": [
+        "Card",
+        "Mobile Payment"
+      ],
+      "userID": 105
     }
   ]
 }
