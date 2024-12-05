@@ -1,51 +1,51 @@
 import express from 'express';
 import cors from 'cors';
-import recipesRouter from './recipe.js';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 const router = express.Router();
-
-// Define allowed origins
-const allowedOrigins = ['http://localhost:5173']; // Replace with your frontend's domain
-
-// CORS configuration
-const corsOptions = {
-  origin: (origin, callback) => {
-    console.log(origin);
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'],   // Allowed headers
-  credentials: true,                                   // Allow cookies and credentials
-};
 
 // create a proxy for each microservice
 const microserviceProxy = createProxyMiddleware({
   target: 'http://microservice:3011',
-  changeOrigin: true
-});
-const productsProxy = createProxyMiddleware({
-  target: 'http://products:3013',
-  changeOrigin: true
+  changeOrigin: true,
+  on: {
+    proxyReq: fixRequestBody,
+  },
 });
 const marketsProxy = createProxyMiddleware({
   target: 'http://markets:3012',
-  changeOrigin: true
+  changeOrigin: true,
+  on: {
+    proxyReq: fixRequestBody,
+  },
 });
-
+const productsProxy = createProxyMiddleware({
+  target: 'http://products:3013',
+  changeOrigin: true,
+  on: {
+    proxyReq: fixRequestBody,
+  },
+});
 const shopsProxy = createProxyMiddleware({
   target: 'http://shops:3014',
-  changeOrigin: true
+  changeOrigin: true,
+  on: {
+    proxyReq: fixRequestBody,
+  },
 });
-// Use CORS middleware
-router.use(cors(corsOptions));
+const recipesProxy = createProxyMiddleware({
+  target: 'http://recipes:3015',
+  changeOrigin: true,
+  on: {
+    proxyReq: fixRequestBody,
+  },
+});
 
-router.use('/microservice', microserviceProxy);
-router.use('/shops', shopsProxy);
-router.use('/recipes', recipesRouter);
-router.use('/products', productsProxy);
-router.use('/markets', marketsProxy);
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+
+router.use('/microservice', cors(), microserviceProxy);
+router.use('/shops', cors(), shopsProxy);
+router.use('/recipes', cors(), recipesProxy);
+router.use('/products', cors(), productsProxy);
+router.use('/markets', cors(), marketsProxy);
 export default router;
