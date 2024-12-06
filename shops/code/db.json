@@ -5,11 +5,11 @@
   },
   "shops": [
     {
-      "id": {},
-      "name": "LA Boutique",
-      "address": {
-        "city": "Los Angeles",
-        "address": "789 Sunset Blvd"
+      "id": 1,
+      "name": "markt",
+      "location": {
+        "city": "Middelburg",
+        "address": "Markt 1"
       },
       "phoneNumber": "9876543210",
       "openingHours": {
@@ -20,6 +20,81 @@
         "Cash"
       ],
       "userID": 7
+    },
+    {
+      "id": 2,
+      "name": "NYC Fashion",
+      "location": {
+        "city": "vlissingen",
+        "address": "boulevard bankert 2"
+      },
+      "phoneNumber": "1234567890",
+      "openingHours": {
+        "monday": "10:00 AM - 8:00 PM",
+        "tuesday": "10:00 AM - 8:00 PM"
+      },
+      "payingMethods": [
+        "Credit Card",
+        "Cash"
+      ],
+      "userID": 8
+    },
+    {
+      "id": 3,
+      "name": "marktgoes",
+      "location": {
+        "city": "goes",
+        "address": "grote markt 23"
+      },
+      "phoneNumber": "2345678901",
+      "openingHours": {
+        "monday": "11:00 AM - 7:00 PM",
+        "tuesday": "11:00 AM - 7:00 PM"
+      },
+      "payingMethods": [
+        "Credit Card",
+        "Cash",
+        "PayPal"
+      ],
+      "userID": 9
+    },
+    {
+      "id": 4,
+      "name": "haven",
+      "location": {
+        "city": "zierikzee",
+        "address": "havenplein 5"
+      },
+      "phoneNumber": "3456789012",
+      "openingHours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM"
+      },
+      "payingMethods": [
+        "Credit Card",
+        "Cash",
+        "Apple Pay"
+      ],
+      "userID": 10
+    },
+    {
+      "id": 5,
+      "name": "Miami Trends",
+      "location": {
+        "city": "terneuzen",
+        "address": "nieuwstraat 10"
+      },
+      "phoneNumber": "4567890123",
+      "openingHours": {
+        "monday": "10:00 AM - 6:00 PM",
+        "tuesday": "10:00 AM - 6:00 PM"
+      },
+      "payingMethods": [
+        "Credit Card",
+        "Cash",
+        "Google Pay"
+      ],
+      "userID": 11
     }
   ]
 }
