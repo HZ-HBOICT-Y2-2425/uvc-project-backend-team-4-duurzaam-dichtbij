@@ -42,7 +42,7 @@ export async function createShop(req, res) {
     shops.push({
       id: id,
       name: name,
-      address: address,
+      location: address,
       phoneNumber: phoneNumber,
       openingHours: openingHours,
       payingMethods: payingMethods,
@@ -92,9 +92,9 @@ export async function updateShop(req, res) {
   }
 
   if (req.body.location) {
-    shop.address = {
-      city: req.body.location.city || shop.address.city,
-      address: req.body.location.address || shop.address.address
+    shop.location = {
+      city: req.body.location.city || shop.location.city,
+      address: req.body.location.address || shop.location.address
     };
   }
 

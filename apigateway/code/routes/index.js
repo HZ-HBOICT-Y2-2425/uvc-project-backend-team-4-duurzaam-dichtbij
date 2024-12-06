@@ -1,8 +1,13 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import recipesRouter from './recipe.js';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+const app = express();
 const router = express.Router();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define allowed origins
 const allowedOrigins = ['http://localhost:5173']; // Replace with your frontend's domain
