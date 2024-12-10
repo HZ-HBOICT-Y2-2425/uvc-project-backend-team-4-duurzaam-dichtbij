@@ -41,6 +41,17 @@ services:
     ports:
       - "3012:3012"
     working_dir: /usr/src/app
+    command: bash -c "npm install --no-audit && npm run dev"
+
+  events:
+    image: node:21.7.3
+    volumes:
+      - ./events/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "3016:3016"
+    working_dir: /usr/src/app
     command: bash -c "npm install --no-audit && npm run dev"  
 
   gateway:
