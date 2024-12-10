@@ -1,123 +1,103 @@
 {
   "meta": {
-    "tile": "List of shops",
+    "title": "List of shops",
     "date": "November 2024"
   },
   "shops": [
     {
       "id": 1,
-      "name": "Zeeland Boutique",
-      "address": {
-        "city": "Middelburg",
-        "address": "Markt 1"
+      "name": "NYC Fashion",
+      "location": {
+        "city": "vlissingen",
+        "address": "boulevard bankert 2"
       },
-      "phoneNumber": "0118123456",
+      "phoneNumber": "1234567890",
       "openingHours": {
-        "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM",
-        "wednesday": "9:00 AM - 6:00 PM",
-        "thursday": "9:00 AM - 6:00 PM",
-        "friday": "9:00 AM - 6:00 PM",
-        "saturday": "10:00 AM - 4:00 PM",
-        "sunday": "closed"
+        "monday": "10:00 AM - 8:00 PM",
+        "tuesday": "10:00 AM - 8:00 PM"
       },
       "payingMethods": [
-        "Cash",
-        "Credit Card"
+        "Credit Card",
+        "Cash"
       ],
-      "userID": 1
+      "userID": 8
     },
     {
       "id": 2,
-      "name": "Vlissingen Fashion",
-      "address": {
-        "city": "Vlissingen",
-        "address": "Boulevard Bankert 2"
+      "name": "marktgoes",
+      "location": {
+        "city": "goes",
+        "address": "grote markt 23"
       },
-      "phoneNumber": "0118234567",
+      "phoneNumber": "2345678901",
       "openingHours": {
-        "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM",
-        "wednesday": "9:00 AM - 6:00 PM",
-        "thursday": "9:00 AM - 6:00 PM",
-        "friday": "9:00 AM - 6:00 PM",
-        "saturday": "10:00 AM - 4:00 PM",
-        "sunday": "closed"
+        "monday": "11:00 AM - 7:00 PM",
+        "tuesday": "11:00 AM - 7:00 PM"
       },
       "payingMethods": [
+        "Credit Card",
         "Cash",
-        "Credit Card"
+        "PayPal"
       ],
-      "userID": 2
+      "userID": 9
     },
     {
       "id": 3,
-      "name": "Goes boontjes",
-      "address": {
-        "city": "Goes",
-        "address": "Grote Markt 23"
+      "name": "haven",
+      "location": {
+        "city": "zierikzee",
+        "address": "havenplein 5"
       },
-      "phoneNumber": "0118345678",
+      "phoneNumber": "3456789012",
       "openingHours": {
-        "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM",
-        "wednesday": "9:00 AM - 6:00 PM",
-        "thursday": "9:00 AM - 6:00 PM",
-        "friday": "9:00 AM - 6:00 PM",
-        "saturday": "10:00 AM - 4:00 PM",
-        "sunday": "closed"
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM"
       },
       "payingMethods": [
+        "Credit Card",
         "Cash",
-        "Credit Card"
+        "Apple Pay"
       ],
-      "userID": 3
+      "userID": 10
     },
     {
       "id": 4,
-      "name": "Zierikzee Store",
-      "address": {
-        "city": "Zierikzee",
-        "address": "Havenplein 5"
+      "name": "Miami Trends",
+      "location": {
+        "city": "terneuzen",
+        "address": "nieuwstraat 10"
       },
-      "phoneNumber": "0118456789",
+      "phoneNumber": "4567890123",
       "openingHours": {
-        "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM",
-        "wednesday": "9:00 AM - 6:00 PM",
-        "thursday": "9:00 AM - 6:00 PM",
-        "friday": "9:00 AM - 6:00 PM",
-        "saturday": "10:00 AM - 4:00 PM",
-        "sunday": "closed"
+        "monday": "10:00 AM - 6:00 PM",
+        "tuesday": "10:00 AM - 6:00 PM"
       },
       "payingMethods": [
+        "Credit Card",
         "Cash",
-        "Credit Card"
+        "Google Pay"
       ],
-      "userID": 4
+      "userID": 11
     },
     {
       "id": 5,
-      "name": "Terneuzen Shop",
-      "address": {
-        "city": "Terneuzen",
-        "address": "Nieuwstraat 10"
+      "name": "example shop",
+      "location": {
+        "city": "arnemuiden",
+        "address": "oranje nassaustraat 2"
       },
-      "phoneNumber": "0118567890",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM",
-        "wednesday": "9:00 AM - 6:00 PM",
-        "thursday": "9:00 AM - 6:00 PM",
-        "friday": "9:00 AM - 6:00 PM",
-        "saturday": "10:00 AM - 4:00 PM",
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": [
-        "Cash",
-        "Credit Card"
-      ],
-      "userID": 5
+      "payingMethods": "Cash",
+      "image": "uploads/1733831831202-Screenshot 2024-12-10 114831.png"
     }
   ]
 }

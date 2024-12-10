@@ -4,7 +4,7 @@ const router = express.Router();
 
 // routes
 router.get('/', (req, res, next) => {
-  res.json('The markets microservice is running');
+  res.json('The markets microservice is running')
 });
 
 router.post('/markets', createMarket);
