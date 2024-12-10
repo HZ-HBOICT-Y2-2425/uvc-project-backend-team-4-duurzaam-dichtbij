@@ -1,4 +1,5 @@
 import { JSONFilePreset } from "lowdb/node";
+import fetch from "node-fetch";
 
 // Read or create db.json
 // defaultData specifies the structure of the database
@@ -10,6 +11,21 @@ const defaultData = {
 let db = await JSONFilePreset('db.json', defaultData);
 let markets = db.data.markets;
 const allMarketIds = markets.map(market => market.id);
+
+async function geocode(address, city) {
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?street=${address}&city=${city}&format=jsonv2`);
+    const json = await res.json();
+    if (json.length > 0) {
+      return { lat: json[0].lat, lng: json[0].lon };
+    } else {
+      return { lat: null, lng: null };
+    }
+  } catch (error) {
+    console.error(`Error geocoding ${address}, ${city}:`, error);
+    return { lat: null, lng: null };
+  }
+}
 
 export function getDB() {
   if (db === undefined) {
@@ -45,6 +61,8 @@ export async function createMarket(req, res) {
     address: req.body.location.address
   };
 
+  const coords = await geocode(location.address, location.city);
+
   const comments = [];
 
   if (!name || !dayOfWeek || !startTime || !endTime || !description) {
@@ -69,7 +87,9 @@ export async function createMarket(req, res) {
       description,
       location,
       verified,
-      comments
+      comments,
+      lat: coords.lat,
+      lng: coords.lng
     });
 
     await db.write();
@@ -132,6 +152,9 @@ export async function updateMarket(req, res) {
     if (location.city === undefined || location.address === undefined) {
       return res.status(400).send('Location must include both city and address');
     }
+    const coords = await geocode(location.address, location.city);
+    market.lat = coords.lat;
+    market.lng = coords.lng;
   }
 
   // Update fields if validation passes
