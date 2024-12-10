@@ -1,6 +1,5 @@
 import { JSONFilePreset } from "lowdb/node";
-import multer from 'multer';
-import path from 'path';
+import multer from "multer";
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -8,7 +7,7 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, `${Date.now()}`);
   }
 });
 
@@ -52,6 +51,7 @@ export const createShop = [
     const payingMethods = req.body.payingMethods;
     const userID = req.body.userID;
     const image = req.file ? req.file.path : null;
+    console.log(req.file);
 
     if (!name || !address.city || !address.address || !userID || !openingHours) {
       return res.status(400).send('Missing required fields');
@@ -138,6 +138,11 @@ export async function updateShop(req, res) {
   if (req.body.userID) {
     shop.userID = req.body.userID;
   }
+
+  if (req.file) {
+    shop.image = req.file.path;
+  }
+
   await db.write();
 
   res.status(200).send(`Shop with ID: ${id} updated successfully`);
