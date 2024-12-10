@@ -1,4 +1,18 @@
 import { JSONFilePreset } from "lowdb/node";
+import multer from 'multer';
+import path from 'path';
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Read or create db.json
 // defaultData specifies the structure of the database
@@ -16,43 +30,46 @@ export function getAvailableId() {
   return availableId;
 }
 
-export async function createShop(req, res) {
-  const id = getAvailableId();
-  const address = {
-    city: req.body.location.city,
-    address: req.body.location.address
-  };
-  const name = req.body.name;
-  const phoneNumber = req.body.phonenumber;
-  const openingHours = {
-    monday: req.body.openingHours.monday || 'closed',
-    tuesday: req.body.openingHours.tuesday || 'closed',
-    wednesday: req.body.openingHours.wednesday || 'closed',
-    thursday: req.body.openingHours.thursday || 'closed',
-    friday: req.body.openingHours.friday || 'closed',
-    saturday: req.body.openingHours.saturday || 'closed',
-    sunday: req.body.openingHours.sunday || 'closed'
-  };
-  const payingMethods = req.body.payingMethods;
-  const userID = req.body.userID;
+export const createShop = [
+  upload.single('image'), // Middleware to handle single file upload
+  async (req, res) => {
+    const id = getAvailableId();
+    const address = {
+      city: req.body.location.city,
+      address: req.body.location.address
+    };
+    const name = req.body.name;
+    const phoneNumber = req.body.phonenumber;
+    const openingHours = {
+      monday: req.body.openingHours.monday || 'closed',
+      tuesday: req.body.openingHours.tuesday || 'closed',
+      wednesday: req.body.openingHours.wednesday || 'closed',
+      thursday: req.body.openingHours.thursday || 'closed',
+      friday: req.body.openingHours.friday || 'closed',
+      saturday: req.body.openingHours.saturday || 'closed',
+      sunday: req.body.openingHours.sunday || 'closed'
+    };
+    const payingMethods = req.body.payingMethods;
+    const userID = req.body.userID;
+    const image = req.file ? req.file.path : null;
 
-  if (!name || !address.city || !address.address || !userID || !openingHours) {
-    return res.status(400).send('Missing required fields');
-  } else {
-    shops.push({
-      id: id,
-      name: name,
-      location: address,
-      phoneNumber: phoneNumber,
-      openingHours: openingHours,
-      payingMethods: payingMethods,
-      userID: userID
-    });
-    await db.write();
-
-    res.status(201).send(`Shop created with name: ${name} `);
+    if (!name || !address.city || !address.address || !userID || !openingHours) {
+      return res.status(400).send('Missing required fields');
+    } else {
+      shops.push({
+        id: id,
+        name: name,
+        location: address,
+        phoneNumber: phoneNumber,
+        openingHours: openingHours,
+        payingMethods: payingMethods,
+        image: image
+      });
+      await db.write();
+      return res.status(201).send('Shop created successfully');
+    }
   }
-}
+];
 /**
  * aquire list of shops
  * @param {*} req 
