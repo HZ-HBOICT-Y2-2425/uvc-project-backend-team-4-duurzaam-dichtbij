@@ -5,21 +5,119 @@
   },
   "shops": [
     {
-      "id": {},
-      "name": "LA Boutique",
+      "id": 1,
+      "name": "Zeeland Boutique",
       "address": {
-        "city": "Los Angeles",
-        "address": "789 Sunset Blvd"
+        "city": "Middelburg",
+        "address": "Markt 1"
       },
-      "phoneNumber": "9876543210",
+      "phoneNumber": "0118123456",
       "openingHours": {
         "monday": "9:00 AM - 6:00 PM",
-        "tuesday": "9:00 AM - 6:00 PM"
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 4:00 PM",
+        "sunday": "closed"
       },
       "payingMethods": [
-        "Cash"
+        "Cash",
+        "Credit Card"
       ],
-      "userID": 7
+      "userID": 1
+    },
+    {
+      "id": 2,
+      "name": "Vlissingen Fashion",
+      "address": {
+        "city": "Vlissingen",
+        "address": "Boulevard Bankert 2"
+      },
+      "phoneNumber": "0118234567",
+      "openingHours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 4:00 PM",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Credit Card"
+      ],
+      "userID": 2
+    },
+    {
+      "id": 3,
+      "name": "Goes boontjes",
+      "address": {
+        "city": "Goes",
+        "address": "Grote Markt 23"
+      },
+      "phoneNumber": "0118345678",
+      "openingHours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 4:00 PM",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Credit Card"
+      ],
+      "userID": 3
+    },
+    {
+      "id": 4,
+      "name": "Zierikzee Store",
+      "address": {
+        "city": "Zierikzee",
+        "address": "Havenplein 5"
+      },
+      "phoneNumber": "0118456789",
+      "openingHours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 4:00 PM",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Credit Card"
+      ],
+      "userID": 4
+    },
+    {
+      "id": 5,
+      "name": "Terneuzen Shop",
+      "address": {
+        "city": "Terneuzen",
+        "address": "Nieuwstraat 10"
+      },
+      "phoneNumber": "0118567890",
+      "openingHours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 4:00 PM",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Credit Card"
+      ],
+      "userID": 5
     }
   ]
 }
