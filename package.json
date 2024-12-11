@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "eslint": "^9.15.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ioredis": "^5.4.1",
+    "redis": "^4.7.0"
+  }
+}
