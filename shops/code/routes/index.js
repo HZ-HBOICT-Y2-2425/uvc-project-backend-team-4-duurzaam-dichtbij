@@ -1,3 +1,14 @@
+import express from 'express';
+import { createShop, deleteShop, responseShop, responseShops, updateShop } from '../controllers/shopController.js';
+import { checkName } from '../middleware/exampleMiddleware.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import path from 'path';
+import fs from 'fs';
+
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+const router = express.Router();
 /**
  * @swagger
  * /:
@@ -315,3 +326,5 @@ router.put('/shop/:id', checkName, updateShop);
  *         description: Winkel niet gevonden
  */
 router.delete('/shop/:id', checkName, deleteShop);
+
+export default router;
