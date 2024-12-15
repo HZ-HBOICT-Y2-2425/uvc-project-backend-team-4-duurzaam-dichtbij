@@ -3,6 +3,39 @@
     "title": "List of markets",
     "date": "December 2024"
   },
-  "markets": [],
-  "nextId": 1
+  "markets": [
+    {
+      "id": 1,
+      "name": "Example Market",
+      "dayOfWeek": "maandag",
+      "startTime": "08:00",
+      "endTime": "14:00",
+      "description": "A vibrant local market",
+      "location": {
+        "city": "Middelburg",
+        "address": "Markt 1"
+      },
+      "verified": false,
+      "comments": [],
+      "lat": "51.5000702",
+      "lng": "3.6734431"
+    },
+    {
+      "id": 2,
+      "name": "Example Market 1",
+      "dayOfWeek": "maandag",
+      "startTime": "08:00",
+      "endTime": "14:00",
+      "description": "A vibrant local market",
+      "location": {
+        "city": "Goes",
+        "address": "klein frankrijk 19"
+      },
+      "verified": false,
+      "comments": [],
+      "lat": "51.5073265",
+      "lng": "3.8817418"
+    }
+  ],
+  "nextId": 3
 }
