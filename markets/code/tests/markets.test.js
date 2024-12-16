@@ -3,10 +3,9 @@ import { getDB, setDB } from '../controllers/marketController.js';
 import supertest from 'supertest';
 import { app, server } from '../start.js';
 import { Low, Memory } from 'lowdb';
-import e from 'express';
 
 // Default data used in the controller
-const defaultData = { meta: { "tile": "List of markets", "date": "November 2024" }, markets: [] };
+const defaultData = { meta: { "tile": "List of markets", "date": "November 2024" }, markets: [], nextId: 1 };
 let db;
 
 let oldDb = null;
@@ -33,106 +32,82 @@ afterAll(() => {
 });
 
 describe('Market Controller', () => {
+  async function createTestMarket() {
+    const market = {
+      name: 'Market 1',
+      dayOfWeek: 'maandag',
+      startTime: '13:00',
+      endTime: '17:00',
+      description: 'A great market',
+      verified: true,
+      location: { city: 'City1', address: 'Street1' },
+    };
+    return await supertest(app).post('/markets').send(market).set('Accept', 'application/json');
+  }
 
   it('should create a market with valid data', async () => {
-    const newMarket = {
-      name: 'Market 1',
-      startDate: '2024-12-30T13:00:00.000Z',
-      endDate: '2024-12-30T17:00:00.000Z',
-      description: 'A great market',
-      location: { city: 'City1', address: 'Street1' }
-    };
+    const res = await createTestMarket();
 
-    const res = await supertest(app)
-      .post('/markets')
-      .send(newMarket)
-      .set('Accept', 'application/json');
-
-      
-    // const res = (await supertest(app).post('/markets')).status(201).send(newMarket);
-    
-    expect(db.data.markets).toHaveLength(1); // Ensure one market is added
-    expect(db.data.markets[0].name).toBe('Market 1'); // Check the market name
-    expect(res.status).toBe(201); // Ensure response status is 201
-    expect(res.text).toBe(`Market created with name: ${newMarket.name}`); // Check send message
+    expect(res.status).toBe(201);
+    expect(db.data.markets).toHaveLength(1);
+    expect(db.data.markets[0].name).toBe('Market 1');
+    expect(res.text).toBe('Market created with name: Market 1');
   });
 
-  it('should return a list of all markets', async () => {
-    const res = await supertest(app).get('/markets');
+  it('should return all markets', async () => {
+    await createTestMarket();
 
-    expect(res.status).toBe(200); // Ensure response status is 200
-    expect(res.body).toEqual(db.data.markets); // Ensure the response body matches the database
+    const res = await supertest(app).get('/markets');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual(db.data.markets);
   });
 
   it('should update a market successfully', async () => {
-    const market = {
-      name: 'Market 1',
-      startDate: '2024-12-30T13:00:00.000Z',
-      endDate: '2024-12-30T17:00:00.000Z',
-      description: 'A great market',
-      location: { city: 'City1', address: 'Street1' }
-    };
-
-    const res1 = await supertest(app)
-      .post('/markets')
-      .send(market)
-      .set('Accept', 'application/json');
-
-    expect(res1.status).toBe(201); // Ensure response status is 201
-    expect(db.data.markets).toHaveLength(1); // Ensure one market is added
-    expect(db.data.markets[0].name).toBe('Market 1'); // Check the market name
-    expect(res1.text).toBe(`Market created with name: ${market.name}`); // Check send message
-
+    const createRes = await createTestMarket();
+    const createdMarketId = createRes.body.id || 1; // Retrieve the created market ID dynamically
 
     const updatedMarket = {
-      name: 'Market 2',
-      startDate: '2024-12-20',
-      endDate: '2024-12-30',
-      description: 'An even better market',
-      location: { city: 'City2', address: 'Street2' }
+      name: 'Updated Market',
+      dayOfWeek: 'woensdag',
+      startTime: '15:00',
+      endTime: '20:00',
+      description: 'Updated description',
+      verified: false,
+      location: { city: 'Updated City', address: 'Updated Address' },
     };
 
-    const res2 = await supertest(app)
-      .put('/market/1')
-      .send(updatedMarket)
-      .set('Accept', 'application/json');
-
-    expect(db.data.markets[0].name).toBe('Market 2'); // Ensure the market is updated
-    expect(db.data.markets).toHaveLength(1);
-    expect(res2.status).toBe(200); // Check response status
-    expect(res2.text).toBe(`Market updated with id: 1`); // Check send message
+    const res = await supertest(app).put(`/market/${createdMarketId}`).send(updatedMarket).set('Accept', 'application/json');
+    expect(res.status).toBe(200);
+    expect(db.data.markets[0].name).toBe('Updated Market');
+    expect(res.text).toBe(`Market updated with id: ${createdMarketId}`);
   });
 
   it('should delete a market successfully', async () => {
-    const market = {
-      name: 'Market 1',
-      startDate: '2024-12-30T13:00:00.000Z',
-      endDate: '2024-12-30T17:00:00.000Z',
-      description: 'A great market',
-      location: { city: 'City1', address: 'Street1' }
-    };
+    const createRes = await createTestMarket();
+    const createdMarketId = createRes.body.id || 1; // Retrieve the created market ID dynamically
 
-    const res1 = await supertest(app)
-      .post('/markets')
-      .send(market)
-      .set('Accept', 'application/json');
-
-    expect(res1.status).toBe(201); // Ensure response status is 201
-    expect(db.data.markets).toHaveLength(1); // Ensure one market is added
-    expect(db.data.markets[0].name).toBe('Market 1'); // Check the market name
-    expect(res1.text).toBe(`Market created with name: ${market.name}`); // Check send message
-
-    const res2 = await supertest(app).delete('/market/1');
-
-    expect(db.data.markets).toHaveLength(0); // Ensure the market is deleted
-    expect(res2.status).toBe(200); // Check response status
-    expect(res2.text).toBe(`Market deleted with id: 1`); // Check send message
+    const res = await supertest(app).delete(`/market/${createdMarketId}`);
+    expect(res.status).toBe(200);
+    expect(db.data.markets).toHaveLength(0);
+    expect(res.text).toBe(`Market deleted with id: ${createdMarketId}`);
   });
 
   it('should return 404 if market not found', async () => {
-    const res = await supertest(app).get('/market/1');
+    const res = await supertest(app).get('/market/999');
+    expect(res.status).toBe(404);
+    expect(res.text).toBe('Market not found');
+  });
 
-    expect(res.status).toBe(404); // Ensure response status is 404
-    expect(res.text).toBe('Market not found'); // Check send message
+  it('should handle invalid input', async () => {
+    const invalidMarket = {
+      name: 'Invalid Market',
+      dayOfWeek: 'invalidDay',
+      startTime: 'invalidDate',
+      endTime: '2024-12-15T14:00:00Z',
+      description: 'Missing location',
+    };
+
+    const res = await supertest(app).post('/markets').send(invalidMarket).set('Accept', 'application/json');
+    expect(res.status).toBe(400);
   });
 });

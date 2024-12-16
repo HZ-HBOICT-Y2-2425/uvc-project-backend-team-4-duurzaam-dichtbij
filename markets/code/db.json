@@ -1,44 +1,25 @@
 {
   "meta": {
     "title": "List of markets",
-    "date": "November 2024"
+    "date": "December 2024"
   },
   "markets": [
     {
       "id": 1,
-      "name": "Boerenmarkt Middelharnis",
-      "startDate": "2024-11-30T10:00:00.000Z",
-      "endDate": "2024-11-30T14:00:00.000Z",
-      "description": "A lively market with fresh Zeeland produce and artisanal goods.",
+      "name": "Example Market 1",
+      "dayOfWeek": "maandag",
+      "startTime": "08:00",
+      "endTime": "14:00",
+      "description": "A vibrant local market",
       "location": {
-        "city": "Middelharnis",
-        "address": "Voorstraat 45"
+        "city": "Goes",
+        "address": "klein frankrijk 19"
       },
-      "comments": []
-    },
-    {
-      "id": 2,
-      "name": "Boerenmarkt Terneuzen",
-      "startDate": "2024-12-02T09:00:00.000Z",
-      "endDate": "2024-12-02T13:00:00.000Z",
-      "description": "Discover local specialties and meet Zeeland farmers.",
-      "location": {
-        "city": "Terneuzen",
-        "address": "Scheldeboulevard 3"
-      },
-      "comments": []
-    },
-    {
-      "id": 3,
-      "name": "Zeeuwse Markt Oostkapelle",
-      "startDate": "2024-12-08T11:00:00.000Z",
-      "endDate": "2024-12-08T15:00:00.000Z",
-      "description": "Experience a vibrant farmers' market in the heart of Oostkapelle.",
-      "location": {
-        "city": "Oostkapelle",
-        "address": "Dorpsstraat 34"
-      },
-      "comments": []
+      "verified": false,
+      "comments": [],
+      "lat": "51.5073265",
+      "lng": "3.8817418"
     }
-  ]
+  ],
+  "nextId": 3
 }

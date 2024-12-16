@@ -1,10 +1,39 @@
 import { JSONFilePreset } from "lowdb/node";
+import multer from "multer";
+import fetch from "node-fetch";
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}`);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Read or create db.json
 // defaultData specifies the structure of the database
 const defaultData = { meta: {"tile": "List of shops","date": "November 2024"}, shops : [] };
 const db = await JSONFilePreset('db.json', defaultData);
 const shops = db.data.shops;
+
+async function geocode(address, city) {
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?street=${address}&city=${city}&format=jsonv2`);
+    const json = await res.json();
+    if (json.length > 0) {
+      return { lat: json[0].lat, lng: json[0].lon };
+    } else {
+      return { lat: null, lng: null };
+    }
+  } catch (error) {
+    console.error(`Error geocoding ${address}, ${city}:`, error);
+    return { lat: null, lng: null };
+  }
+}
 
 export function getAvailableId() {
   if (shops.length === 0) {
@@ -16,43 +45,51 @@ export function getAvailableId() {
   return availableId;
 }
 
-export async function createShop(req, res) {
-  const id = getAvailableId();
-  const address = {
-    city: req.body.location.city,
-    address: req.body.location.address
-  };
-  const name = req.body.name;
-  const phoneNumber = req.body.phonenumber;
-  const openingHours = {
-    monday: req.body.openingHours.monday || 'closed',
-    tuesday: req.body.openingHours.tuesday || 'closed',
-    wednesday: req.body.openingHours.wednesday || 'closed',
-    thursday: req.body.openingHours.thursday || 'closed',
-    friday: req.body.openingHours.friday || 'closed',
-    saturday: req.body.openingHours.saturday || 'closed',
-    sunday: req.body.openingHours.sunday || 'closed'
-  };
-  const payingMethods = req.body.payingMethods;
-  const userID = req.body.userID;
+export const createShop = [
+  upload.single('image'), // Middleware to handle single file upload
+  async (req, res) => {
+    const id = getAvailableId();
+    const address = {
+      city: req.body.location.city,
+      address: req.body.location.address
+    };
+    const name = req.body.name;
+    const phoneNumber = req.body.phonenumber;
+    const openingHours = {
+      monday: req.body.openingHours.monday || 'closed',
+      tuesday: req.body.openingHours.tuesday || 'closed',
+      wednesday: req.body.openingHours.wednesday || 'closed',
+      thursday: req.body.openingHours.thursday || 'closed',
+      friday: req.body.openingHours.friday || 'closed',
+      saturday: req.body.openingHours.saturday || 'closed',
+      sunday: req.body.openingHours.sunday || 'closed'
+    };
+    const payingMethods = req.body.payingMethods;
+    const userID = req.body.userID;
+    const image = req.file ? req.file.path : null;
 
-  if (!name || !address.city || !address.address || !userID || !openingHours) {
-    return res.status(400).send('Missing required fields');
-  } else {
-    shops.push({
-      id: id,
-      name: name,
-      address: address,
-      phoneNumber: phoneNumber,
-      openingHours: openingHours,
-      payingMethods: payingMethods,
-      userID: userID
-    });
-    await db.write();
+    const coords = await geocode(address.address, address.city);
 
-    res.status(201).send(`Shop created with name: ${name} `);
+    if (!name || !address.city || !address.address || !userID || !openingHours) {
+      return res.status(400).send('Missing required fields');
+    } else {
+      shops.push({
+        id: id,
+        name: name,
+        location: address,
+        phoneNumber: phoneNumber,
+        openingHours: openingHours,
+        payingMethods: payingMethods,
+        image: image,
+        lat: coords.lat,
+        lng: coords.lng
+      });
+      await db.write();
+      return res.status(201).send('Shop created successfully');
+    }
   }
-}
+];
+
 /**
  * aquire list of shops
  * @param {*} req 
@@ -92,10 +129,13 @@ export async function updateShop(req, res) {
   }
 
   if (req.body.location) {
-    shop.address = {
-      city: req.body.location.city || shop.address.city,
-      address: req.body.location.address || shop.address.address
+    shop.location = {
+      city: req.body.location.city || shop.location.city,
+      address: req.body.location.address || shop.location.address
     };
+    const coords = await geocode(shop.location.address, shop.location.city);
+    shop.lat = coords.lat;
+    shop.lng = coords.lng;
   }
 
   if (req.body.phonenumber) {
@@ -121,6 +161,11 @@ export async function updateShop(req, res) {
   if (req.body.userID) {
     shop.userID = req.body.userID;
   }
+
+  if (req.file) {
+    shop.image = req.file.path;
+  }
+
   await db.write();
 
   res.status(200).send(`Shop with ID: ${id} updated successfully`);

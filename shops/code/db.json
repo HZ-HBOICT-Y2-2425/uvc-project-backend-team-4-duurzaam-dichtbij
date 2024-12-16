@@ -6,119 +6,91 @@
   "shops": [
     {
       "id": 1,
-      "name": "Zeeland Fresh Market",
-      "address": {
-        "city": "Middelburg",
-        "address": "Lange Delft 5"
+      "name": "example shop1",
+      "location": {
+        "city": "arnemuiden",
+        "address": "oranje nassaustraat 2"
       },
-      "phoneNumber": "0118123456",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "9:00 AM - 5:30 PM",
-        "tuesday": "9:00 AM - 5:30 PM",
-        "wednesday": "9:00 AM - 5:30 PM",
-        "thursday": "9:00 AM - 8:00 PM",
-        "friday": "9:00 AM - 5:30 PM",
-        "saturday": "9:00 AM - 4:00 PM",
-        "sunday": "Closed"
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
       },
-      "payingMethods": [
-        "Cash",
-        "Card"
-      ],
-      "userID": 101
-    },
-    {
-      "id": 2,
-      "name": "Domburg Delights",
-      "address": {
-        "city": "Domburg",
-        "address": "Weststraat 10"
-      },
-      "phoneNumber": "0118356789",
-      "openingHours": {
-        "monday": "10:00 AM - 6:00 PM",
-        "tuesday": "10:00 AM - 6:00 PM",
-        "wednesday": "10:00 AM - 6:00 PM",
-        "thursday": "10:00 AM - 6:00 PM",
-        "friday": "10:00 AM - 7:00 PM",
-        "saturday": "10:00 AM - 5:00 PM",
-        "sunday": "12:00 PM - 4:00 PM"
-      },
-      "payingMethods": [
-        "Cash",
-        "Card",
-        "Mobile Payment"
-      ],
-      "userID": 102
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.5007933",
+      "lng": "3.6830778"
     },
     {
       "id": 3,
-      "name": "Vlissingen Vintage",
-      "address": {
-        "city": "Vlissingen",
-        "address": "Walstraat 25"
+      "name": "example shop3",
+      "location": {
+        "city": "wissenkerke",
+        "address": "julianastraat 1"
       },
-      "phoneNumber": "0118475623",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "10:00 AM - 5:00 PM",
-        "tuesday": "10:00 AM - 5:00 PM",
-        "wednesday": "10:00 AM - 5:00 PM",
-        "thursday": "10:00 AM - 8:00 PM",
-        "friday": "10:00 AM - 5:00 PM",
-        "saturday": "10:00 AM - 5:00 PM",
-        "sunday": "Closed"
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
       },
-      "payingMethods": [
-        "Card",
-        "Mobile Payment"
-      ],
-      "userID": 103
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.5847742",
+      "lng": "3.7454419"
     },
     {
       "id": 4,
-      "name": "Zierikzee Specialties",
-      "address": {
-        "city": "Zierikzee",
-        "address": "Keetenstraat 2"
+      "name": "example shop3",
+      "location": {
+        "city": "kruiningen",
+        "address": "einsteinstraat 2"
       },
-      "phoneNumber": "0111567890",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "Closed",
-        "tuesday": "10:00 AM - 5:30 PM",
-        "wednesday": "10:00 AM - 5:30 PM",
-        "thursday": "10:00 AM - 5:30 PM",
-        "friday": "10:00 AM - 6:00 PM",
-        "saturday": "10:00 AM - 4:00 PM",
-        "sunday": "Closed"
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
       },
-      "payingMethods": [
-        "Cash",
-        "Card"
-      ],
-      "userID": 104
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.448154",
+      "lng": "4.0266196"
     },
     {
       "id": 5,
-      "name": "Goes Gourmet",
-      "address": {
-        "city": "Goes",
-        "address": "Oude Markt 7"
+      "name": "example shop2",
+      "location": {
+        "city": "middelburg",
+        "address": "kruitmolenlaan 60"
       },
-      "phoneNumber": "0113423456",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "9:00 AM - 5:00 PM",
-        "tuesday": "9:00 AM - 5:00 PM",
-        "wednesday": "9:00 AM - 5:00 PM",
-        "thursday": "9:00 AM - 6:00 PM",
-        "friday": "9:00 AM - 6:00 PM",
-        "saturday": "9:00 AM - 5:00 PM",
-        "sunday": "Closed"
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
       },
-      "payingMethods": [
-        "Card",
-        "Mobile Payment"
-      ],
-      "userID": 105
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.4963775",
+      "lng": "3.6260334"
     }
   ]
 }
