@@ -6,6 +6,25 @@
   "markets": [
     {
       "id": 1,
+<<<<<<< HEAD
+=======
+      "name": "Example Market",
+      "dayOfWeek": "maandag",
+      "startTime": "08:00",
+      "endTime": "14:00",
+      "description": "A vibrant local market",
+      "location": {
+        "city": "Middelburg",
+        "address": "Markt 1"
+      },
+      "verified": false,
+      "comments": [],
+      "lat": "51.5000702",
+      "lng": "3.6734431"
+    },
+    {
+      "id": 2,
+>>>>>>> 738b74c71d513ef7a2b86297f2d385319178546b
       "name": "Example Market 1",
       "dayOfWeek": "maandag",
       "startTime": "08:00",
@@ -15,9 +34,19 @@
         "city": "Goes",
         "address": "klein frankrijk 19"
       },
+<<<<<<< HEAD
       "verified": true,
       "comments": []
     }
   ],
   "nextId": 2
+=======
+      "verified": false,
+      "comments": [],
+      "lat": "51.5073265",
+      "lng": "3.8817418"
+    }
+  ],
+  "nextId": 3
+>>>>>>> 738b74c71d513ef7a2b86297f2d385319178546b
 }
