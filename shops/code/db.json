@@ -21,7 +21,7 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": "Cash",
+      "payingMethods": ["Cash"],
       "image": null,
       "lat": "51.5007933",
       "lng": "3.6830778"
@@ -43,7 +43,7 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": "Cash",
+      "payingMethods": ["Cash"],
       "image": null,
       "lat": "51.5847742",
       "lng": "3.7454419"
@@ -65,7 +65,7 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": "Cash",
+      "payingMethods": ["Cash"],
       "image": null,
       "lat": "51.448154",
       "lng": "4.0266196"
@@ -87,7 +87,7 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": "Cash",
+      "payingMethods": ["Cash"],
       "image": null,
       "lat": "51.4963775",
       "lng": "3.6260334"
