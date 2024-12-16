@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "title": "List of shops",
+    "date": "November 2024"
+  },
+  "shops": [
+    {
+      "id": 1,
+      "name": "example shop1",
+      "location": {
+        "city": "arnemuiden",
+        "address": "oranje nassaustraat 2"
+      },
+      "phoneNumber": "9876475465",
+      "openingHours": {
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
+      },
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.5007933",
+      "lng": "3.6830778"
+    },
+    {
+      "id": 3,
+      "name": "example shop3",
+      "location": {
+        "city": "wissenkerke",
+        "address": "julianastraat 1"
+      },
+      "phoneNumber": "9876475465",
+      "openingHours": {
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
+      },
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.5847742",
+      "lng": "3.7454419"
+    },
+    {
+      "id": 4,
+      "name": "example shop3",
+      "location": {
+        "city": "kruiningen",
+        "address": "einsteinstraat 2"
+      },
+      "phoneNumber": "9876475465",
+      "openingHours": {
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
+      },
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.448154",
+      "lng": "4.0266196"
+    },
+    {
+      "id": 5,
+      "name": "example shop2",
+      "location": {
+        "city": "middelburg",
+        "address": "kruitmolenlaan 60"
+      },
+      "phoneNumber": "9876475465",
+      "openingHours": {
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
+      },
+      "payingMethods": ["Cash"],
+      "image": null,
+      "lat": "51.4963775",
+      "lng": "3.6260334"
+    }
+  ]
+}
