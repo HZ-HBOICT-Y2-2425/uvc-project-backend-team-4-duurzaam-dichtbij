@@ -1,6 +1,5 @@
 import { JSONFilePreset } from "lowdb/node";
 import multer from "multer";
-import fetch from "node-fetch";
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -19,21 +18,6 @@ const upload = multer({ storage: storage });
 const defaultData = { meta: {"tile": "List of shops","date": "November 2024"}, shops : [] };
 const db = await JSONFilePreset('db.json', defaultData);
 const shops = db.data.shops;
-
-async function geocode(address, city) {
-  try {
-    const res = await fetch(`https://nominatim.openstreetmap.org/search?street=${address}&city=${city}&format=jsonv2`);
-    const json = await res.json();
-    if (json.length > 0) {
-      return { lat: json[0].lat, lng: json[0].lon };
-    } else {
-      return { lat: null, lng: null };
-    }
-  } catch (error) {
-    console.error(`Error geocoding ${address}, ${city}:`, error);
-    return { lat: null, lng: null };
-  }
-}
 
 export function getAvailableId() {
   if (shops.length === 0) {
@@ -67,8 +51,7 @@ export const createShop = [
     const payingMethods = req.body.payingMethods;
     const userID = req.body.userID;
     const image = req.file ? req.file.path : null;
-
-    const coords = await geocode(address.address, address.city);
+    console.log(req.file);
 
     if (!name || !address.city || !address.address || !userID || !openingHours) {
       return res.status(400).send('Missing required fields');
@@ -80,16 +63,13 @@ export const createShop = [
         phoneNumber: phoneNumber,
         openingHours: openingHours,
         payingMethods: payingMethods,
-        image: image,
-        lat: coords.lat,
-        lng: coords.lng
+        image: image
       });
       await db.write();
       return res.status(201).send('Shop created successfully');
     }
   }
 ];
-
 /**
  * aquire list of shops
  * @param {*} req 
@@ -133,9 +113,6 @@ export async function updateShop(req, res) {
       city: req.body.location.city || shop.location.city,
       address: req.body.location.address || shop.location.address
     };
-    const coords = await geocode(shop.location.address, shop.location.city);
-    shop.lat = coords.lat;
-    shop.lng = coords.lng;
   }
 
   if (req.body.phonenumber) {

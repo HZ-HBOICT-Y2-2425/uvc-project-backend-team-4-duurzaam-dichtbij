@@ -23,9 +23,3 @@ You can change the ports of your server via `variables.env`
 ## Containers
 
 Check the readme files of each container to understand the setup
-
-
-## api docu
-1. ga naar events\code
-2. doe npm run dev
-3. http://localhost:3016/api-docs

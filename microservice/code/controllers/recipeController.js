@@ -18,7 +18,7 @@ const CACHE_TTL = 24 * 60 * 60 * 1000;
 
 const getRecipes = async (req, res) => {
   const query = req.query.query || '';
-  const number = req.query.number || 25;
+  const number = req.query.number || 10;
 
   const cacheKey = `recipes_${query}_${number}`;
   const cachedData = getCache(cacheKey);
