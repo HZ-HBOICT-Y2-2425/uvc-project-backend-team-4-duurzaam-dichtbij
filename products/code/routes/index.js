@@ -1,5 +1,7 @@
 import express from 'express';
+import cors from 'cors';
 import { createProducts, responseProduct, responseProducts, updateProduct, deleteProduct } from '../controllers/ProductController.js';
+import { generateQRCode, scanQRCode } from '../controllers/QRcodeController.js'; // Importeer de nieuwe QRCodeController
 const router = express.Router();
 
 /**
@@ -99,7 +101,7 @@ router.post('/products', createProducts);
  *                     description: CO2-uitstoot van het product
  */
 router.get('/products', responseProducts);
-
+router.post('/scan-qr',cors(), scanQRCode);
 /**
  * @swagger
  * /products/{param}:
@@ -192,5 +194,8 @@ router.put('/products/:param', updateProduct);
  *         description: Product niet gevonden
  */
 router.delete('/products/:param', deleteProduct);
+
+router.post('/products/:productId/generate-qr',cors(),  generateQRCode);  // Genereer een QR-code voor een product
+
 
 export default router;
