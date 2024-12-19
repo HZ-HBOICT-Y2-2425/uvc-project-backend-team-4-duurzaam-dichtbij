@@ -3,5 +3,24 @@
     "tile": "List of products",
     "date": "November 2024"
   },
-  "products": []
+  "products": [
+    {
+      "id": "d1a774d7-48da-4537-b81d-c38b0410ce16",
+      "name": "Tomato",
+      "inSeason": true,
+      "carbonDioxide": 2.3
+    },
+    {
+      "id": "45d54293-f19f-4b9d-97d9-b1872069d6f6",
+      "name": "egg",
+      "inSeason": true,
+      "carbonDioxide": 5
+    },
+    {
+      "id": "ca714da5-11e2-4104-9884-b939aa6be5e6",
+      "name": "eggss",
+      "inSeason": true,
+      "carbonDioxide": 5
+    }
+  ]
 }
