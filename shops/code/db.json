@@ -21,36 +21,21 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": ["Cash"],
+      "payingMethods": [
+        "Cash"
+      ],
       "image": null,
+      "userID": "16",
+      "promotions": {
+        "description": "bananen zijn 40% goedkoper",
+        "endDate": "31/12/2025"
+      },
       "lat": "51.5007933",
       "lng": "3.6830778"
     },
     {
-      "id": 3,
-      "name": "example shop3",
-      "location": {
-        "city": "wissenkerke",
-        "address": "julianastraat 1"
-      },
-      "phoneNumber": "9876475465",
-      "openingHours": {
-        "monday": "9:00-16:00",
-        "tuesday": "closed",
-        "wednesday": "10:00-17:00",
-        "thursday": "closed",
-        "friday": "closed",
-        "saturday": "closed",
-        "sunday": "closed"
-      },
-      "payingMethods": ["Cash"],
-      "image": null,
-      "lat": "51.5847742",
-      "lng": "3.7454419"
-    },
-    {
-      "id": 4,
-      "name": "example shop3",
+      "id": 2,
+      "name": "example shop2",
       "location": {
         "city": "kruiningen",
         "address": "einsteinstraat 2"
@@ -65,14 +50,21 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": ["Cash"],
+      "payingMethods": [
+        "Cash"
+      ],
       "image": null,
+      "userID": "17",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
       "lat": "51.448154",
       "lng": "4.0266196"
     },
     {
-      "id": 5,
-      "name": "example shop2",
+      "id": 3,
+      "name": "example shop3",
       "location": {
         "city": "middelburg",
         "address": "kruitmolenlaan 60"
@@ -87,8 +79,15 @@
         "saturday": "closed",
         "sunday": "closed"
       },
-      "payingMethods": ["Cash"],
+      "payingMethods": [
+        "Cash"
+      ],
       "image": null,
+      "userID": "15",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
       "lat": "51.4963775",
       "lng": "3.6260334"
     }
