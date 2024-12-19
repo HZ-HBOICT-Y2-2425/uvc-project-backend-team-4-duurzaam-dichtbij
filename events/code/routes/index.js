@@ -1,5 +1,5 @@
 import express from 'express';
-import { createEvent, deleteEvent, responseEvent, responseEvents, updateEvent } from '../controllers/eventController.js';
+import { applyEvent, createEvent, deApplyEvent, deleteEvent, isAppliedEvent, responseEvent, responseEvents, updateEvent } from '../controllers/eventController.js';
 
 const router = express.Router();
 
@@ -209,5 +209,97 @@ router.put('/event/:id', updateEvent);
  *         description: Evenement niet gevonden
  */
 router.delete('/event/:id', deleteEvent);
+
+/**
+ * @swagger
+ * /events/{id}/apply/{user}:
+ *   get:
+ *     summary: Controleer of een gebruiker is aangemeld voor een evenement
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: user
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de gebruiker zijn account
+ *     responses:
+ *       200:
+ *         description: Gebruiker is aangemeld voor het evenement
+ *       400:
+ *         description: Ongeldige invoer
+ *       404:
+ *         description: Evenement niet gevonden of gebruiker is niet aangemeld voor het evenement
+ */
+router.get('/events/:id/apply/:user', isAppliedEvent);
+
+/**
+ * @swagger
+ * /events/{id}/apply:
+ *   post:
+ *     summary: Meld je aan voor een evenement
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *     requestBody:
+ *      required: true
+ *      content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *            user:
+ *             type: integer
+ *             description: ID van de gebruiker zijn account
+ *     responses:
+ *       200:
+ *         description: Aanmelding succesvol
+ *       400:
+ *         description: Ongeldige invoer
+ *       404:
+ *         description: Evenement niet gevonden
+ */
+router.post('/events/:id/apply', applyEvent);
+
+/**
+ * @swagger
+ * /events/{id}/apply:
+ *   delete:
+ *     summary: Meld je af voor een evenement
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *     requestBody:
+ *      required: true
+ *      content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *            user:
+ *             type: integer
+ *             description: ID van de gebruiker zijn account
+ *     responses:
+ *       200:
+ *         description: Afmelding succesvol
+ *       400:
+ *         description: Ongeldige invoer
+ *       404:
+ *         description: Evenement niet gevonden
+ */
+router.delete('/events/:id/apply', deApplyEvent);
 
 export default router;

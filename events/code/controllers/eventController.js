@@ -34,6 +34,7 @@ export async function createEvent(req, res) {
     city: req.body.location.city,
     address: req.body.location.address
   };
+  const appliedUsers = [];
   const comments = [];
 
   if (!name || !type || !startDate || !endDate || !description || !location.city || !location.address) {
@@ -57,6 +58,7 @@ export async function createEvent(req, res) {
       endDate: endDate,
       description: description,
       location: location,
+      appliedUsers: appliedUsers,
       comments: comments
     });
     await db.write();
@@ -141,5 +143,51 @@ export async function deleteEvent(req, res) {
     res.status(200).send(`Event deleted with id: ${id}`);
   } else {
     res.status(404).send('Event not found');
+  }
+}
+
+export async function isAppliedEvent(req, res) {
+  if (!req.params.user) {
+    return res.status(400).send('Missing required fields');
+  } else if (!events.find(event => event.id === Number(req.params.id))) {
+    return res.status(404).send('Event not found');
+  } else if (events.find(event => event.id === Number(req.params.id)).appliedUsers.includes(Number(req.params.user))) {
+    return res.status(200).send(true);
+  } else {
+    return res.status(200).send(false);
+  }
+}
+
+export async function applyEvent(req, res) {
+  if (!req.body.user) {
+    return res.status(400).send('Missing required fields');
+  } else if (!events.find(event => event.id === Number(req.params.id))) {
+    return res.status(404).send('Event not found');
+  } else if (events.find(event => event.id === Number(req.params.id)).appliedUsers.includes(req.body.user)) {
+    return res.status(400).send('User already applied');
+  } else if (events.find(event => event.id === Number(req.params.id)).startDate < new Date()) {
+    return res.status(400).send('Event already started');
+  } else if (events.find(event => event.id === Number(req.params.id)).endDate < new Date()) {
+    return res.status(400).send('Event already ended');
+  } else {
+    events.find(event => event.id === Number(req.params.id)).appliedUsers.push(req.body.user);
+    await db.write();
+
+    res.status(200).send(`User ${req.body.user} applied for event with id: ${req.params.id}`);
+  }
+}
+
+export async function deApplyEvent(req, res) {
+  if (!req.body.user) {
+    return res.status(400).send('Missing required fields');
+  } else if (!events.find(event => event.id === Number(req.params.id))) {
+    return res.status(404).send('Event not found');
+  } else if (!events.find(event => event.id === Number(req.params.id)).appliedUsers.includes(req.body.user)) {
+    return res.status(400).send('User not applied');
+  } else {
+    events.find(event => event.id === Number(req.params.id)).appliedUsers.splice(events.find(event => event.id === Number(req.params.id)).appliedUsers.indexOf(req.body.user), 1);
+    await db.write();
+
+    res.status(200).send(`User ${req.body.user} de-applied for event with id: ${req.params.id}`);
   }
 }
