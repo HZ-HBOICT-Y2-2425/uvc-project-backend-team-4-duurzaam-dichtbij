@@ -5,7 +5,8 @@ import { JSONFilePreset } from "lowdb/node";
 const defaultData = { 
   meta: { "title": "List of events", "date": "December 2024" }, 
   events: [], 
-  nextId: 1 
+  nextId: 1,
+  nextCommentId: 1
 };
 let db = await JSONFilePreset('db.json', defaultData);
 let events = db.data.events;

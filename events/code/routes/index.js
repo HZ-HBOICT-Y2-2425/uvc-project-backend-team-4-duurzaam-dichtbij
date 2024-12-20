@@ -1,5 +1,6 @@
 import express from 'express';
 import { applyEvent, createEvent, deApplyEvent, deleteEvent, isAppliedEvent, responseEvent, responseEvents, updateEvent } from '../controllers/eventController.js';
+import { createComment, deleteComment, editComment, getComments } from '../controllers/commentController.js';
 
 const router = express.Router();
 
@@ -301,5 +302,148 @@ router.post('/events/:id/apply', applyEvent);
  *         description: Evenement niet gevonden
  */
 router.delete('/events/:id/apply', deApplyEvent);
+
+/**
+ * @swagger
+ * /events/{id}/comments:
+ *   post:
+ *     summary: Voeg een comment toe aan een evenement
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Naam van de gebruiker
+ *               content:
+ *                 type: string
+ *                 description: Inhoud van de comment
+ *     responses:
+ *       201:
+ *         description: Comment succesvol aangemaakt
+ *       400:
+ *         description: Ontbrekende verplichte velden
+ *       404:
+ *         description: Evenement niet gevonden
+ */
+router.post('/events/:id/comments', createComment);
+
+/**
+ * @swagger
+ * /events/{id}/comments:
+ *   get:
+ *     summary: Haal alle comments op voor een evenement
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *     responses:
+ *       200:
+ *         description: Lijst van comments
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: ID van de comment
+ *                   username:
+ *                     type: string
+ *                     description: Gebruikersnaam van de auteur
+ *                   content:
+ *                     type: string
+ *                     description: Inhoud van de comment
+ *                   replies:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                       description: Reacties op de comment
+ *       404:
+ *         description: Evenement niet gevonden
+ */
+router.get('/events/:id/comments', getComments);
+
+/**
+ * @swagger
+ * /events/{id}/comments/{commentId}:
+ *   put:
+ *     summary: Bewerk een bestaande comment
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de comment
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Gebruikersnaam van de editor
+ *               content:
+ *                 type: string
+ *                 description: Nieuwe inhoud van de comment
+ *     responses:
+ *       200:
+ *         description: Comment succesvol bijgewerkt
+ *       400:
+ *         description: Ontbrekende verplichte velden
+ *       404:
+ *         description: Evenement of comment niet gevonden
+ */
+router.put('/events/:id/comments/:commentId', editComment);
+
+/**
+ * @swagger
+ * /events/{id}/comments/{commentId}:
+ *   delete:
+ *     summary: Verwijder een comment
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de comment
+ *     responses:
+ *       200:
+ *         description: Comment succesvol verwijderd
+ *       404:
+ *         description: Evenement of comment niet gevonden
+ */
+router.delete('/events/:id/comments/:commentId', deleteComment);
 
 export default router;
