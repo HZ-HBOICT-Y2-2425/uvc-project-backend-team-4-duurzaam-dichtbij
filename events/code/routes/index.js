@@ -1,6 +1,7 @@
 import express from 'express';
 import { applyEvent, createEvent, deApplyEvent, deleteEvent, isAppliedEvent, responseEvent, responseEvents, updateEvent } from '../controllers/eventController.js';
 import { createComment, deleteComment, editComment, getComments } from '../controllers/commentController.js';
+import { createReply, deleteReply, editReply, getReplies } from '../controllers/replyCommentController.js';
 
 const router = express.Router();
 
@@ -445,5 +446,167 @@ router.put('/events/:id/comments/:commentId', editComment);
  *         description: Evenement of comment niet gevonden
  */
 router.delete('/events/:id/comments/:commentId', deleteComment);
+
+/**
+ * @swagger
+ * /events/{id}/comments/{commentId}/replies:
+ *   post:
+ *     summary: Voeg een reactie toe op een comment
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de comment
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Naam van de gebruiker die de reactie plaatst
+ *               content:
+ *                 type: string
+ *                 description: Inhoud van de reactie
+ *     responses:
+ *       201:
+ *         description: Reactie succesvol toegevoegd
+ *       400:
+ *         description: Ontbrekende verplichte velden
+ *       404:
+ *         description: Evenement of comment niet gevonden
+ */
+router.post('/events/:id/comments/:commentId/replies', createReply);
+
+/**
+ * @swagger
+ * /events/{id}/comments/{commentId}/replies:
+ *   get:
+ *     summary: Haal alle reacties op voor een comment
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de comment
+ *     responses:
+ *       200:
+ *         description: Lijst van reacties
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: ID van de reactie
+ *                   username:
+ *                     type: string
+ *                     description: Gebruikersnaam van de auteur
+ *                   content:
+ *                     type: string
+ *                     description: Inhoud van de reactie
+ *       404:
+ *         description: Evenement of comment niet gevonden
+ */
+router.get('/events/:id/comments/:commentId/replies', getReplies);
+
+/**
+ * @swagger
+ * /events/{id}/comments/{commentId}/replies/{replyId}:
+ *   put:
+ *     summary: Bewerk een bestaande reactie
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de comment
+ *       - in: path
+ *         name: replyId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de reactie
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Gebruikersnaam van de editor
+ *               content:
+ *                 type: string
+ *                 description: Nieuwe inhoud van de reactie
+ *     responses:
+ *       200:
+ *         description: Reactie succesvol bewerkt
+ *       400:
+ *         description: Ontbrekende verplichte velden
+ *       404:
+ *         description: Evenement, comment of reactie niet gevonden
+ */
+router.put('/events/:id/comments/:commentId/replies/:replyId', editReply);
+
+/**
+ * @swagger
+ * /events/{id}/comments/{commentId}/replies/{replyId}:
+ *   delete:
+ *     summary: Verwijder een reactie
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van het evenement
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de comment
+ *       - in: path
+ *         name: replyId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID van de reactie
+ *     responses:
+ *       200:
+ *         description: Reactie succesvol verwijderd
+ *       404:
+ *         description: Evenement, comment of reactie niet gevonden
+ */
+router.delete('/events/:id/comments/:commentId/replies/:replyId', deleteReply);
 
 export default router;

@@ -6,7 +6,6 @@ const defaultData = {
   meta: { "title": "List of events", "date": "December 2024" }, 
   events: [], 
   nextId: 1,
-  nextCommentId: 1
 };
 let db = await JSONFilePreset('db.json', defaultData);
 let events = db.data.events;
@@ -60,7 +59,7 @@ export async function createEvent(req, res) {
       description: description,
       location: location,
       appliedUsers: appliedUsers,
-      comments: comments
+      comments: comments,
     });
     await db.write();
 
