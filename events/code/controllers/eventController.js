@@ -36,6 +36,7 @@ export async function createEvent(req, res) {
   };
   const appliedUsers = [];
   const comments = [];
+  const nextCommentId = 1;
 
   if (!name || !type || !startDate || !endDate || !description || !location.city || !location.address) {
     return res.status(400).send('Missing required fields');
@@ -60,6 +61,7 @@ export async function createEvent(req, res) {
       location: location,
       appliedUsers: appliedUsers,
       comments: comments,
+      nextCommentId: nextCommentId
     });
     await db.write();
 

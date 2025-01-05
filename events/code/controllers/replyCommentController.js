@@ -3,7 +3,6 @@ import { getDB } from "./eventController.js";
 
 let db = getDB();
 let events = db.data.events;
-let nextReplyId = 1;
 
 export async function createReply(req, res) {
     const event = events.find(event => event.id == req.params.id);
@@ -21,11 +20,11 @@ export async function createReply(req, res) {
     }
 
     comment.replies.push({
-        id: nextReplyId,
+        id: comment.nextReplyId,
         username: req.body.username,
         content: req.body.content,
     });
-    nextReplyId += 1;
+    comment.nextReplyId += 1;
     await db.write();
 
     return res.status(201).send(`Reply on comment ${comment.id} created by user: ${req.body.username}`);
