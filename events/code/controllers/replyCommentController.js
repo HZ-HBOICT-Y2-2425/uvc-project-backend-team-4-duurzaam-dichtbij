@@ -1,13 +1,7 @@
 import { JSONFilePreset } from "lowdb/node";
+import { getDB } from "./eventController.js";
 
-// Read or create db.json
-// defaultData specifies the structure of the database
-const defaultData = { 
-  meta: { "title": "List of events", "date": "December 2024" }, 
-  events: [], 
-  nextId: 1,
-};
-let db = await JSONFilePreset('db.json', defaultData);
+let db = getDB();
 let events = db.data.events;
 let nextReplyId = 1;
 
