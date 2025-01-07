@@ -1,8 +1,8 @@
 import { JSONFilePreset } from "lowdb/node";
 import { getDB } from "./eventController.js";
 
-let db = getDB();
-let events = db.data.events;
+const db = getDB();
+const events = db.data.events;
 
 export async function createComment(req, res) {
     const event = events.find(event => event.id == req.params.id);
