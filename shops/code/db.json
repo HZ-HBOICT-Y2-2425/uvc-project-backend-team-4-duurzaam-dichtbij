@@ -63,7 +63,7 @@
     },
     {
       "id": 2,
-      "name": "example shop3",
+      "name": "example shop2",
       "location": {
         "city": "wissenkerke",
         "address": "julianastraat 1"
@@ -88,37 +88,12 @@
         "description": null,
         "endDate": null
       },
-      "products": []
-    },
-    {
-      "id": 4,
-      "name": "example shop3",
-      "location": {
-        "city": "kruiningen",
-        "address": "einsteinstraat 2"
-      },
-      "phoneNumber": "9876475465",
-      "openingHours": {
-        "monday": "9:00-16:00",
-        "tuesday": "closed",
-        "wednesday": "10:00-17:00",
-        "thursday": "closed",
-        "friday": "closed",
-        "saturday": "closed",
-        "sunday": "closed"
-      },
-      "payingMethods": [
-        "Cash"
+      "products": [
+        "84d11d7d-bdfa-491f-b2dc-1af148ce8218",
+        "161939ef-2c59-44ae-8086-f82989aeb8df",
+        "7bef42b3-ea61-486d-ad64-3746ff69bc6c"
       ],
-      "image": null,
-      "userID": "17",
-      "promotions": {
-        "description": null,
-        "endDate": null
-      },
-      "lat": "51.448154",
-      "lng": "4.0266196",
-      "products": []
+      "productList": []
     },
     {
       "id": 3,
@@ -151,7 +126,10 @@
       "products": [
         "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
         "161939ef-2c59-44ae-8086-f82989aeb8df",
-        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca"
+        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+        "35b2063c-457b-463b-8720-a13100b9bcc9",
+        "1edad049-0b6e-484f-8a51-dc1c8a297b21",
+        "a674dd15-2096-48c5-8fd9-8c553169197f"
       ],
       "productList": [
         {
@@ -174,6 +152,27 @@
           "fancyName": "Selderij",
           "inSeason": true,
           "carbonDioxide": 0.27
+        },
+        {
+          "id": "35b2063c-457b-463b-8720-a13100b9bcc9",
+          "name": "broccoli",
+          "fancyName": "Broccoli",
+          "inSeason": true,
+          "carbonDioxide": 0.62
+        },
+        {
+          "id": "1edad049-0b6e-484f-8a51-dc1c8a297b21",
+          "name": "honey",
+          "fancyName": "Honing",
+          "inSeason": true,
+          "carbonDioxide": 0.76
+        },
+        {
+          "id": "a674dd15-2096-48c5-8fd9-8c553169197f",
+          "name": "brussels sprouts",
+          "fancyName": "Spruitjes",
+          "inSeason": true,
+          "carbonDioxide": 0.61
         }
       ]
     },
@@ -198,14 +197,48 @@
         "Cash"
       ],
       "image": null,
-      "lat": "38.34987403025544",
-      "lng": "-94.58608826139799",
+      "userID": "17",
       "promotions": {
         "description": null,
         "endDate": null
       },
+      "lat": "51.448154",
+      "lng": "4.0266196",
       "products": [
-        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca"
+        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+        "694480e0-cfa7-4be1-ade0-4d6992f5659f",
+        "2b0f85de-6acc-456b-af9d-8e2fed127ba2",
+        "700a4b00-01ae-4e3c-92f6-4972bd811a0a"
+      ],
+      "productList": [
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        },
+        {
+          "id": "694480e0-cfa7-4be1-ade0-4d6992f5659f",
+          "name": "asparagus",
+          "fancyName": "Asperge",
+          "inSeason": true,
+          "carbonDioxide": 0.41
+        },
+        {
+          "id": "2b0f85de-6acc-456b-af9d-8e2fed127ba2",
+          "name": "kale",
+          "fancyName": "Boerenkool",
+          "inSeason": true,
+          "carbonDioxide": 0.61
+        },
+        {
+          "id": "700a4b00-01ae-4e3c-92f6-4972bd811a0a",
+          "name": "bell pepper",
+          "fancyName": "Paprika",
+          "inSeason": true,
+          "carbonDioxide": 1.32
+        }
       ]
     }
   ]
