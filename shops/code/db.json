@@ -6,10 +6,10 @@
   "shops": [
     {
       "id": 1,
-      "name": "example shop1",
+      "name": "'t Schuurtje",
       "location": {
         "city": "arnemuiden",
-        "address": "oranje nassaustraat 2"
+        "address": "oranje nassaustraat 1"
       },
       "phoneNumber": "9876475465",
       "openingHours": {
@@ -30,8 +30,8 @@
         "description": "bananen zijn 40% goedkoper",
         "endDate": "31/12/2025"
       },
-      "lat": "51.5007933",
-      "lng": "3.6830778",
+      "lat": "51.5006445",
+      "lng": "3.6827274",
       "products": [
         "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
         "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
@@ -60,7 +60,12 @@
       ],
       "image": null,
       "lat": "51.5847742",
-      "lng": "3.7454419"
+      "lng": "3.7454419",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
+      "products": []
     },
     {
       "id": 4,
@@ -89,7 +94,8 @@
         "endDate": null
       },
       "lat": "51.448154",
-      "lng": "4.0266196"
+      "lng": "4.0266196",
+      "products": []
     },
     {
       "id": 3,
@@ -149,6 +155,10 @@
       "image": null,
       "lat": "38.34987403025544",
       "lng": "-94.58608826139799",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
       "products": [
         "1edad049-0b6e-484f-8a51-dc1c8a297b21"
       ]
