@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { createProducts, responseProduct, responseProducts, updateProduct, deleteProduct } from '../controllers/ProductController.js';
+import { createProducts, responseProduct, responseProducts, updateProduct, deleteProduct, getProductsByIngredients } from '../controllers/ProductController.js';
 import { generateQRCode, scanQRCode } from '../controllers/QRcodeController.js'; // Importeer de nieuwe QRCodeController
 const router = express.Router();
 
@@ -197,5 +197,5 @@ router.delete('/products/:param', deleteProduct);
 
 router.post('/products/:productId/generate-qr',cors(),  generateQRCode);  // Genereer een QR-code voor een product
 
-
+router.post("/products/by-ingredients", getProductsByIngredients);
 export default router;

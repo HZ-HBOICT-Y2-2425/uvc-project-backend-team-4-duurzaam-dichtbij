@@ -82,7 +82,8 @@ export const createShop = [
         payingMethods: payingMethods,
         image: image,
         lat: coords.lat,
-        lng: coords.lng
+        lng: coords.lng,
+        products: []
       });
       await db.write();
       return res.status(201).send('Shop created successfully');
@@ -184,3 +185,134 @@ export async function deleteShop(req, res) {
     res.status(404).send('Shop not found');
   }
 }
+
+export async function linkProductToShop(req, res) {
+  try {
+    const { shopId, productId } = req.params;
+
+    if (!shopId || !productId) {
+      return res.status(400).json({ error: "Missing 'shopId' or 'productId'." });
+    }
+
+    // Haal de lijst van winkels op via de API van de shops microservice
+    const response = await fetch('http://products:3013/products');  // Pas de URL aan naar je shops microservice
+    if (!response.ok) {
+      return res.status(500).json({ error: "Failed to fetch shops data" });
+    }
+
+    const products = await response.json();  // De lijst van shops van de shops microservice
+
+    // Zoek de shop op basis van shopId
+    const shop = shops.find(shop => shop.id === Number(shopId));
+    const product = products.find(product => product.id === productId);
+
+    if (!shop) {
+      return res.status(404).json({ error: `Shop with ID: ${shopId} not found.` });
+    }
+
+    if (!product) {
+      return res.status(404).json({ error: `Product with ID: ${productId} not found.` });
+    }
+
+    // Link product aan de shop
+    if (!Array.isArray(shop.products)) {
+      shop.products = [];  // Zorg ervoor dat de products-array bestaat
+    }
+
+    if (!shop.products.includes(productId)) {
+      shop.products.push(productId);
+      await db.write();  // Schrijf de veranderingen naar de producten database
+    }
+
+    res.status(200).json({
+      message: `Product with ID: ${productId} linked to Shop with ID: ${shopId}.`,
+      shop,
+    });
+  } catch (error) {
+    console.error("Error linking product to shop:", error.message);
+    res.status(500).json({ error: "Internal server error." });
+  }
+}
+
+export async function getShopProducts(req, res) {
+  try {
+    const { shopId } = req.params;
+
+    // Haal de lijst van winkels op via de API van de shops microservice
+    const response = await fetch('http://shops:3014/shops');  // Pas de URL aan naar je shops microservice
+    if (!response.ok) {
+      return res.status(500).json({ error: "Failed to fetch shops data" });
+    }
+
+    const shops = await response.json();  // De lijst van shops van de shops microservice
+
+    // Zoek de shop op basis van shopId
+    const shop = shops.find(shop => shop.id === Number(shopId));
+
+    if (!shop) {
+      return res.status(404).json({ error: `Shop with ID: ${shopId} not found.` });
+    }
+
+    // Haal de producten op via de API van de producten microservice
+    const productResponse = await fetch('http://products:3013/products');  // Pas de URL aan naar je products microservice
+    if (!productResponse.ok) {
+      return res.status(500).json({ error: "Failed to fetch products data" });
+    }
+
+    const products = await productResponse.json();  // De lijst van producten van de producten microservice
+
+    // Zoek de producten die gekoppeld zijn aan de shop
+    const shopProducts = shop.products.map(productId =>
+      products.find(product => product.id === productId)
+    );
+
+    res.status(200).json(shopProducts.filter(product => product));  // Filter de niet-bestaande producten eruit
+  } catch (error) {
+    console.error("Error fetching shop products:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+}
+
+export async function unlinkProductFromShop(req, res) {
+  try {
+    const { shopId, productId } = req.params;  // Gebruik params in plaats van body
+
+    if (!shopId || !productId) {
+      return res.status(400).json({ error: "Missing 'shopId' or 'productId'." });
+    }
+
+    // Zoek de shop op basis van shopId uit de lokaal opgeslagen data
+    const shop = shops.find(shop => shop.id === Number(shopId));
+
+    if (!shop) {
+      return res.status(404).json({ error: `Shop with ID: ${shopId} not found.` });
+    }
+
+    // Zorg ervoor dat de products array bestaat in de shop
+    if (!Array.isArray(shop.products)) {
+      shop.products = [];  // Als er geen array is, maak er dan een lege array van
+    }
+
+    // Zoek het productId in de products array van de shop
+    const productIndex = shop.products.indexOf(productId);
+
+    if (productIndex === -1) {
+      return res.status(404).json({ error: `Product with ID: ${productId} is not linked to Shop with ID: ${shopId}.` });
+    }
+
+    // Verwijder het product uit de lijst van gekoppelde producten met splice
+    shop.products.splice(productIndex, 1);
+
+    // Schrijf de wijzigingen terug naar de database
+    await db.write();
+
+    res.status(200).json({
+      message: `Product with ID: ${productId} unlinked from Shop with ID: ${shopId}.`,
+      shop,
+    });
+  } catch (error) {
+    console.error("Error unlinking product from shop:", error.message);
+    res.status(500).json({ error: "Internal server error." });
+  }
+}
+

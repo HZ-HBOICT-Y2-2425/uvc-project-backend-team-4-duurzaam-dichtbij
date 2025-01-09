@@ -112,3 +112,22 @@ export async function deleteProduct(req, res) {
     res.status(500).json({ error: "Internal server error." });
   }
 }
+
+export async function getProductsByIngredients(req, res) {
+  try {
+    const { ingredients } = req.body;
+
+    if (!ingredients || !Array.isArray(ingredients)) {
+      return res.status(400).json({ error: "Invalid ingredients format." });
+    }
+
+    const matchingProducts = products.filter((product) =>
+      ingredients.includes(product.name.toLowerCase())
+    );
+
+    res.status(200).json(matchingProducts);
+  } catch (error) {
+    console.error("Error fetching products by ingredients:", error.message);
+    res.status(500).json({ error: "Internal server error." });
+  }
+}

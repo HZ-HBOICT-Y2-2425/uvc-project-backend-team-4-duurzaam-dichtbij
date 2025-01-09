@@ -6,6 +6,8 @@ dotenv.config({ path: 'variables.env' });
 
 const RECIPE_API_URL = "https://api.spoonacular.com/recipes";
 const RECIPE_API_KEY = process.env.RECIPE_API_KEY;
+const PRODUCT_SERVICE_URL = "http://products:3013";
+
 
 const apiClient = axios.create({
   baseURL: RECIPE_API_URL,
@@ -35,7 +37,6 @@ const getRecipes = async (req, res) => {
 
     const recipes = response.data;
 
-    // Zet het antwoord in de cache
     setCache(cacheKey, recipes, CACHE_TTL);
 
     res.status(200).json(recipes);
@@ -58,7 +59,6 @@ const getRecipeById = async (req, res) => {
   try {
     const response = await apiClient.get(`/${recipeId}/information`);
 
-    // Zet het antwoord in de cache
     setCache(cacheKey, response.data, CACHE_TTL);
 
     res.status(200).json(response.data);
@@ -69,7 +69,7 @@ const getRecipeById = async (req, res) => {
 };
 
 
-// Fetch recipe ingredients by ID
+
 async function getRecipeIngredients(req, res) {
   const recipeId = req.params.id;
 
@@ -82,7 +82,7 @@ async function getRecipeIngredients(req, res) {
   }
 }
 
-// Fetch recipe instructions by ID
+
 async function getRecipeInstructions(req, res) {
   const recipeId = req.params.id;
 
@@ -96,3 +96,44 @@ async function getRecipeInstructions(req, res) {
 }
 
 export { getRecipes, getRecipeById, getRecipeIngredients, getRecipeInstructions };
+
+export async function getProductsForRecipe(req, res) {
+  const recipeId = req.params.id;
+
+
+  const descriptorsToRemove = ["diced", "chopped", "minced", "sliced", "whole", "ground", "shredded"];
+
+
+  function cleanIngredientName(name) {
+    const descriptorsToRemove = ["diced", "chopped", "minced", "sliced", "whole", "ground", "shredded", "toppings", "additional"];
+    return name
+      .toLowerCase()
+      .replace(/[^a-z\s]/g, "") 
+      .split(" ")
+      .filter(word => !descriptorsToRemove.includes(word) && word.trim().length > 0)
+      .join(" ");
+  }
+
+  try {
+    const recipeResponse = await apiClient.get(`/${recipeId}/ingredientWidget.json`);
+    const ingredients = recipeResponse.data.ingredients.map((ingredient) => {
+      const rawName = ingredient.nameClean || ingredient.name;
+      return cleanIngredientName(rawName); 
+    });
+
+    console.log("Cleaned ingredients fetched:", ingredients);
+
+    const productResponse = await axios.post(`${PRODUCT_SERVICE_URL}/products/by-ingredients`, {
+      ingredients,
+    });
+
+    res.status(200).json(productResponse.data);
+  } catch (error) {
+    console.error("Error fetching products for recipe:", error.message);
+    if (error.response) {
+      console.error("Response status:", error.response.status);
+      console.error("Response data:", error.response.data);
+    }
+    res.status(500).json({ error: "Something went wrong while fetching products for the recipe." });
+  }
+}
