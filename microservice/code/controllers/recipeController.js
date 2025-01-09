@@ -106,12 +106,13 @@ export async function getProductsForRecipe(req, res) {
 
   function cleanIngredientName(name) {
     const descriptorsToRemove = ["diced", "chopped", "minced", "sliced", "whole", "ground", "shredded", "toppings", "additional"];
-    return name
+    name = name
       .toLowerCase()
       .replace(/[^a-z\s]/g, "") 
       .split(" ")
       .filter(word => !descriptorsToRemove.includes(word) && word.trim().length > 0)
       .join(" ");
+    return name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
   }
 
   try {
@@ -121,10 +122,18 @@ export async function getProductsForRecipe(req, res) {
       return cleanIngredientName(rawName); 
     });
 
-    console.log("Cleaned ingredients fetched:", ingredients);
+    const translationResponse = await axios.post('https://translation.googleapis.com/language/translate/v2', {
+      q: ingredients,
+      target: 'nl',
+      format: 'text',
+      key: process.env.GOOGLE_TRANSLATE_API_KEY
+    });
+
+    const translatedIngredients = translationResponse.data.data.translations.map(translation => translation.translatedText);
+    console.log("Cleaned and Translated ingredients fetched:", translatedIngredients);
 
     const productResponse = await axios.post(`${PRODUCT_SERVICE_URL}/products/by-ingredients`, {
-      ingredients,
+      translatedIngredients,
     });
 
     res.status(200).json(productResponse.data);
