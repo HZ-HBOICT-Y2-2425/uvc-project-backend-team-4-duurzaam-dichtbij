@@ -4,9 +4,9 @@ import { JSONFilePreset } from "lowdb/node";
 
 const defaultData = { meta: {"tile": "List of products","date": "November 2024"}, products : [] };
 
-
 const db = await JSONFilePreset('db.json',defaultData);
 const products = db.data.products;
+let co2 = db.data.co2;
 const qrCodes = {};
 
 // Genereer een QR-code voor een product
@@ -48,6 +48,10 @@ export const scanQRCode = async (req, res) => {
     if (product) {
       // Markeer de QR-code als gebruikt
       qrCodes[code].used = true;
+
+      // Update de CO2 uitstoot
+      co2 += product.carbonDioxide;
+      await db.write();
 
       // Geef de productinformatie terug
       res.json({
