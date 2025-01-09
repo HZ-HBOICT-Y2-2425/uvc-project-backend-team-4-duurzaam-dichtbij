@@ -3,6 +3,7 @@
     "tile": "List of products",
     "date": "November 2024"
   },
+  "co2": 0,
   "products": [
     {
       "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
