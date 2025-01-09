@@ -3,5 +3,144 @@
     "tile": "List of products",
     "date": "November 2024"
   },
-  "products": []
+  "products": [
+    {
+      "id": "d1a774d7-48da-4537-b81d-c38b0410ce16",
+      "name": "Tomato",
+      "inSeason": true,
+      "carbonDioxide": 2.3
+    },
+    {
+      "id": "45d54293-f19f-4b9d-97d9-b1872069d6f6",
+      "name": "egg",
+      "inSeason": true,
+      "carbonDioxide": 5
+    },
+    {
+      "id": "ca714da5-11e2-4104-9884-b939aa6be5e6",
+      "name": "eggss",
+      "inSeason": true,
+      "carbonDioxide": 5
+    },
+    {
+      "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
+      "name": "carrot",
+      "inSeason": true,
+      "carbonDioxide": 0.38
+    },
+    {
+      "id": "6201131e-187f-49e0-83aa-28398a9f80b7",
+      "name": "carrot",
+      "inSeason": true,
+      "carbonDioxide": 10
+    },
+    {
+      "id": "b60c9b71-d7be-4218-ae0b-d751b2a4f1e8",
+      "name": "carrots",
+      "inSeason": true,
+      "carbonDioxide": 0.38
+    },
+    {
+      "id": "161939ef-2c59-44ae-8086-f82989aeb8df",
+      "name": "garlic",
+      "inSeason": true,
+      "carbonDioxide": 0.5
+    },
+    {
+      "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+      "name": "celery",
+      "inSeason": true,
+      "carbonDioxide": 0.27
+    },
+    {
+      "id": "84d11d7d-bdfa-491f-b2dc-1af148ce8218",
+      "name": "tomato",
+      "inSeason": true,
+      "carbonDioxide": 0.32
+    },
+    {
+      "id": "c1a553ab-6448-4a26-9f9f-829ccc148f47",
+      "name": "turnip",
+      "inSeason": true,
+      "carbonDioxide": 0.1
+    },
+    {
+      "id": "53dbd6d5-7479-4b67-9ef6-fd0d986e3a05",
+      "name": "onion",
+      "inSeason": true,
+      "carbonDioxide": 0.32
+    },
+    {
+      "id": "694480e0-cfa7-4be1-ade0-4d6992f5659f",
+      "name": "asparagus",
+      "inSeason": true,
+      "carbonDioxide": 0.41
+    },
+    {
+      "id": "634fd748-bb3b-4916-a644-0f11bbcfc5f1",
+      "name": "peas",
+      "inSeason": true,
+      "carbonDioxide": 0.2
+    },
+    {
+      "id": "2b0f85de-6acc-456b-af9d-8e2fed127ba2",
+      "name": "kale",
+      "inSeason": true,
+      "carbonDioxide": 0.61
+    },
+    {
+      "id": "35c12794-1d68-439e-a776-ecdffd54f5d2",
+      "name": "potato",
+      "inSeason": true,
+      "carbonDioxide": 0.29
+    },
+    {
+      "id": "4aa75164-54e1-4d0b-bcfb-079328edc97b",
+      "name": "green beans",
+      "inSeason": true,
+      "carbonDioxide": 0.04
+    },
+    {
+      "id": "700a4b00-01ae-4e3c-92f6-4972bd811a0a",
+      "name": "bell pepper",
+      "inSeason": true,
+      "carbonDioxide": 1.32
+    },
+    {
+      "id": "b4f8765a-1eff-4723-8ded-047fb6a1506a",
+      "name": "cauliflower",
+      "inSeason": true,
+      "carbonDioxide": 0.21
+    },
+    {
+      "id": "35b2063c-457b-463b-8720-a13100b9bcc9",
+      "name": "broccoli",
+      "inSeason": true,
+      "carbonDioxide": 0.62
+    },
+    {
+      "id": "1edad049-0b6e-484f-8a51-dc1c8a297b21",
+      "name": "honey",
+      "inSeason": true,
+      "carbonDioxide": 0.76
+    },
+    {
+      "id": "efd79336-48a2-4666-b0ee-147060ada08d",
+      "name": "orange",
+      "inSeason": true,
+      "carbonDioxide": 0.05
+    },
+    {
+      "id": "d9f50507-daac-478e-ab6a-df709f18222f",
+      "name": "cherry",
+      "inSeason": true,
+      "carbonDioxide": 0.71
+    },
+    {
+      "id": "a674dd15-2096-48c5-8fd9-8c553169197f",
+      "name": "brussels sprouts",
+      "inSeason": true,
+      "carbonDioxide": 0.61
+    }
+  ]
 }
