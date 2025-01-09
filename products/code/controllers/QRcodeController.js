@@ -9,6 +9,12 @@ const products = db.data.products;
 let co2 = db.data.co2;
 const qrCodes = {};
 
+// Geef de totale CO2 bespaard
+export const responseCO2 = (req, res) => {
+  console.log(co2);
+  return res.status(200).json({co2_saved: co2});
+}
+
 // Genereer een QR-code voor een product
 export const generateQRCode = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*'); 

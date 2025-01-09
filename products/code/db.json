@@ -1,6 +1,6 @@
 {
   "meta": {
-    "tile": "List of products",
+    "title": "List of products",
     "date": "November 2024"
   },
   "co2": 0,
@@ -9,127 +9,127 @@
       "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
       "name": "carrot",
       "fancyName": "Wortel",
-      "inSeason": true,
-      "carbonDioxide": 0.38
+      "category": "root",
+      "carbonDioxideSaved": 0.5
     },
     {
       "id": "161939ef-2c59-44ae-8086-f82989aeb8df",
       "name": "garlic",
       "fancyName": "Knoflook",
-      "inSeason": true,
-      "carbonDioxide": 0.5
+      "category": "root",
+      "carbonDioxideSaved": 0.5
     },
     {
       "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
       "name": "celery",
       "fancyName": "Selderij",
-      "inSeason": true,
-      "carbonDioxide": 0.27
+      "category": "leafy",
+      "carbonDioxideSaved": 0.8
     },
     {
       "id": "84d11d7d-bdfa-491f-b2dc-1af148ce8218",
       "name": "tomato",
       "fancyName": "Tomaat",
-      "inSeason": true,
-      "carbonDioxide": 0.32
+      "category": "fruit",
+      "carbonDioxideSaved": 1.0
     },
     {
       "id": "c1a553ab-6448-4a26-9f9f-829ccc148f47",
       "name": "turnip",
       "fancyName": "Raap",
-      "inSeason": true,
-      "carbonDioxide": 0.1
+      "category": "root",
+      "carbonDioxideSaved": 0.5
     },
     {
       "id": "53dbd6d5-7479-4b67-9ef6-fd0d986e3a05",
       "name": "onion",
       "fancyName": "Ui",
-      "inSeason": true,
-      "carbonDioxide": 0.32
+      "category": "root",
+      "carbonDioxideSaved": 0.5
     },
     {
       "id": "694480e0-cfa7-4be1-ade0-4d6992f5659f",
       "name": "asparagus",
       "fancyName": "Asperge",
-      "inSeason": true,
-      "carbonDioxide": 0.41
+      "category": "luxury",
+      "carbonDioxideSaved": 1.2
     },
     {
       "id": "634fd748-bb3b-4916-a644-0f11bbcfc5f1",
       "name": "peas",
       "fancyName": "Erwten",
-      "inSeason": true,
-      "carbonDioxide": 0.2
+      "category": "legume",
+      "carbonDioxideSaved": 0.6
     },
     {
       "id": "2b0f85de-6acc-456b-af9d-8e2fed127ba2",
       "name": "kale",
       "fancyName": "Boerenkool",
-      "inSeason": true,
-      "carbonDioxide": 0.61
+      "category": "leafy",
+      "carbonDioxideSaved": 0.8
     },
     {
       "id": "35c12794-1d68-439e-a776-ecdffd54f5d2",
       "name": "potato",
       "fancyName": "Aardappel",
-      "inSeason": true,
-      "carbonDioxide": 0.29
+      "category": "root",
+      "carbonDioxideSaved": 0.5
     },
     {
       "id": "4aa75164-54e1-4d0b-bcfb-079328edc97b",
       "name": "green beans",
       "fancyName": "Groene Bonen",
-      "inSeason": true,
-      "carbonDioxide": 0.04
+      "category": "legume",
+      "carbonDioxideSaved": 0.6
     },
     {
       "id": "700a4b00-01ae-4e3c-92f6-4972bd811a0a",
       "name": "bell pepper",
       "fancyName": "Paprika",
-      "inSeason": true,
-      "carbonDioxide": 1.32
+      "category": "fruit",
+      "carbonDioxideSaved": 1.0
     },
     {
       "id": "b4f8765a-1eff-4723-8ded-047fb6a1506a",
       "name": "cauliflower",
       "fancyName": "Bloemkool",
-      "inSeason": true,
-      "carbonDioxide": 0.21
+      "category": "leafy",
+      "carbonDioxideSaved": 0.8
     },
     {
       "id": "35b2063c-457b-463b-8720-a13100b9bcc9",
       "name": "broccoli",
       "fancyName": "Broccoli",
-      "inSeason": true,
-      "carbonDioxide": 0.62
+      "category": "leafy",
+      "carbonDioxideSaved": 0.8
     },
     {
       "id": "1edad049-0b6e-484f-8a51-dc1c8a297b21",
       "name": "honey",
       "fancyName": "Honing",
-      "inSeason": true,
-      "carbonDioxide": 0.76
+      "category": "processed",
+      "carbonDioxideSaved": 1.5
     },
     {
       "id": "efd79336-48a2-4666-b0ee-147060ada08d",
       "name": "orange",
       "fancyName": "Sinaasappel",
-      "inSeason": true,
-      "carbonDioxide": 0.05
+      "category": "fruit",
+      "carbonDioxideSaved": 1.0
     },
     {
       "id": "d9f50507-daac-478e-ab6a-df709f18222f",
       "name": "cherry",
       "fancyName": "Kers",
-      "inSeason": true,
-      "carbonDioxide": 0.71
+      "category": "fruit",
+      "carbonDioxideSaved": 1.0
     },
     {
       "id": "a674dd15-2096-48c5-8fd9-8c553169197f",
       "name": "brussels sprouts",
       "fancyName": "Spruitjes",
-      "inSeason": true,
-      "carbonDioxide": 0.61
+      "category": "leafy",
+      "carbonDioxideSaved": 0.8
     }
   ]
 }
