@@ -25,6 +25,11 @@
         "Cash"
       ],
       "image": null,
+      "userID": "16",
+      "promotions": {
+        "description": "bananen zijn 40% goedkoper",
+        "endDate": "31/12/2025"
+      },
       "lat": "51.5007933",
       "lng": "3.6830778",
       "products": [
@@ -78,12 +83,17 @@
         "Cash"
       ],
       "image": null,
+      "userID": "17",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
       "lat": "51.448154",
       "lng": "4.0266196"
     },
     {
-      "id": 5,
-      "name": "example shop2",
+      "id": 3,
+      "name": "example shop3",
       "location": {
         "city": "middelburg",
         "address": "kruitmolenlaan 60"
@@ -102,6 +112,11 @@
         "Cash"
       ],
       "image": null,
+      "userID": "15",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
       "lat": "51.4963775",
       "lng": "3.6260334",
       "products": [

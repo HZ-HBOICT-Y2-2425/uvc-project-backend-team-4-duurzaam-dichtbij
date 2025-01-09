@@ -1,4 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
+// @ts-nocheck
 import { JSONFilePreset } from "lowdb/node";
 import multer from "multer";
 import fetch from "node-fetch";
@@ -9,7 +10,7 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}`);
+    cb(null, `${Date.now() + file.originalname}`);
   }
 });
 
@@ -68,6 +69,10 @@ export const createShop = [
     const payingMethods = req.body.payingMethods;
     const userID = req.body.userID;
     const image = req.file ? req.file.path : null;
+    const promotions = req.body.promotions ? {
+      description: req.body.promotions.description || null,
+      endDate: req.body.promotions.endDate || null
+    } : { description: null, endDate: null };
 
     const coords = await geocode(address.address, address.city);
 
@@ -82,6 +87,8 @@ export const createShop = [
         openingHours: openingHours,
         payingMethods: payingMethods,
         image: image,
+        userID: userID,
+        promotions: promotions,
         lat: coords.lat,
         lng: coords.lng,
         products: []
@@ -130,61 +137,75 @@ export async function responseShop(req, res) {
 }
 
 
-export async function updateShop(req, res) {
-  const id = parseInt(req.params.id); // Extract the shop ID from the URL parameter
-  const shop = shops.find(shop => shop.id === id); // Find the shop by ID
+export const updateShop = [
+  upload.single('image'), // Middleware to handle single file upload
+  async (req, res) => {
+    const id = parseInt(req.params.id); // Extract the shop ID from the URL parameter
+    const shop = shops.find(shop => shop.id === id); // Find the shop by ID
 
-  if (!shop) {
-    return res.status(404).send(`Shop with ID: ${id} not found`);
+    if (!shop) {
+      return res.status(404).send(`Shop with ID: ${id} not found`);
+    }
+
+    // Update shop attributes based on the request body
+    if (req.body.name) {
+      shop.name = req.body.name;
+    }
+
+    if (req.body.location) {
+      shop.location = {
+        city: req.body.location.city || shop.location.city,
+        address: req.body.location.address || shop.location.address
+      };
+      const coords = await geocode(shop.location.address, shop.location.city);
+      shop.lat = coords.lat;
+      shop.lng = coords.lng;
+    }
+
+    if (req.body.phoneNumber) {
+      shop.phoneNumber = req.body.phoneNumber;
+    }
+
+    if (req.body.openingHours) {
+      shop.openingHours = {
+        monday: req.body.openingHours.monday || shop.openingHours.monday,
+        tuesday: req.body.openingHours.tuesday || shop.openingHours.tuesday,
+        wednesday: req.body.openingHours.wednesday || shop.openingHours.wednesday,
+        thursday: req.body.openingHours.thursday || shop.openingHours.thursday,
+        friday: req.body.openingHours.friday || shop.openingHours.friday,
+        saturday: req.body.openingHours.saturday || shop.openingHours.saturday,
+        sunday: req.body.openingHours.sunday || shop.openingHours.sunday
+      };
+    }
+
+    if (req.body.payingMethods) {
+      try {
+        shop.payingMethods = JSON.parse(req.body.payingMethods);
+      } catch (e) {
+        return res.status(400).send('Invalid payingMethods format');
+      }
+    }
+
+    if (req.body.userID) {
+      shop.userID = req.body.userID;
+    }
+
+    if (req.file) {
+      shop.image = req.file.path;
+    }
+
+    if (req.body.promotions) {
+      shop.promotions = {
+        description: req.body.promotions.description || shop.promotions.description,
+        endDate: req.body.promotions.endDate || shop.promotions.endDate
+      };
+    }
+
+    await db.write();
+
+    res.status(200).send(`Shop with ID: ${id} updated successfully`);
   }
-
-  // Update shop attributes based on the request body
-  if (req.body.name) {
-    shop.name = req.body.name;
-  }
-
-  if (req.body.location) {
-    shop.location = {
-      city: req.body.location.city || shop.location.city,
-      address: req.body.location.address || shop.location.address
-    };
-    const coords = await geocode(shop.location.address, shop.location.city);
-    shop.lat = coords.lat;
-    shop.lng = coords.lng;
-  }
-
-  if (req.body.phonenumber) {
-    shop.phoneNumber = req.body.phonenumber;
-  }
-
-  if (req.body.openingHours) {
-    shop.openingHours = {
-      monday: req.body.openingHours.monday || shop.openingHours.monday,
-      tuesday: req.body.openingHours.tuesday || shop.openingHours.tuesday,
-      wednesday: req.body.openingHours.wednesday || shop.openingHours.wednesday,
-      thursday: req.body.openingHours.thursday || shop.openingHours.thursday,
-      friday: req.body.openingHours.friday || shop.openingHours.friday,
-      saturday: req.body.openingHours.saturday || shop.openingHours.saturday,
-      sunday: req.body.openingHours.sunday || shop.openingHours.sunday
-    };
-  }
-
-  if (req.body.payingMethods) {
-    shop.payingMethods = req.body.payingMethods;
-  }
-
-  if (req.body.userID) {
-    shop.userID = req.body.userID;
-  }
-
-  if (req.file) {
-    shop.image = req.file.path;
-  }
-
-  await db.write();
-
-  res.status(200).send(`Shop with ID: ${id} updated successfully`);
-}
+];
 
 export async function deleteShop(req, res) {
   const id = req.params.id;
