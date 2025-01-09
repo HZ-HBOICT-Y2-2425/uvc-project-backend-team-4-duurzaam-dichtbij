@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { JSONFilePreset } from "lowdb/node";
 import multer from "multer";
 import fetch from "node-fetch";
@@ -108,10 +109,23 @@ export async function responseShop(req, res) {
   const param = req.params.param;
   const shop = shops.find(shop => shop.id === Number(param) || shop.name === param);
 
-  if (shop) {
-    res.status(200).send(shop);
-  } else {
-    res.status(404).send('Shop not found');
+  if (!shop) {
+      return res.status(404).send('Shop not found');
+  }
+
+  try {
+      // Fetch all products
+      const productResponse = await fetch('http://gateway:3010/products/products');
+      const products = await productResponse.json();
+
+      // Filter products from repsonse based on shop products``
+      const shopProducts = products.filter(product => shop.products.includes(product.id));
+      shop.productList = shopProducts;
+
+      res.status(200).send(shop);
+  } catch (error) {
+      console.error("Error fetching products:", error);
+      res.status(500).send("Internal server error");
   }
 }
 
@@ -195,7 +209,7 @@ export async function linkProductToShop(req, res) {
     }
 
     // Haal de lijst van winkels op via de API van de shops microservice
-    const response = await fetch('http://products:3013/products');  // Pas de URL aan naar je shops microservice
+    const response = await fetch('http://gateway:3010/products/products');  // Pas de URL aan naar je shops microservice
     if (!response.ok) {
       return res.status(500).json({ error: "Failed to fetch shops data" });
     }
