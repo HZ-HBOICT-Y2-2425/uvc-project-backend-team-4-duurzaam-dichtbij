@@ -27,7 +27,7 @@
       "image": null,
       "userID": "16",
       "promotions": {
-        "description": "bananen zijn 40% goedkoper",
+        "description": "wortelen zijn 40% goedkoper",
         "endDate": "31/12/2025"
       },
       "lat": "51.5007933",
@@ -36,10 +36,33 @@
         "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
         "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
         "c1a553ab-6448-4a26-9f9f-829ccc148f47"
+      ],
+      "productList": [
+        {
+          "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
+          "name": "carrot",
+          "fancyName": "Wortel",
+          "inSeason": true,
+          "carbonDioxide": 0.38
+        },
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        },
+        {
+          "id": "c1a553ab-6448-4a26-9f9f-829ccc148f47",
+          "name": "turnip",
+          "fancyName": "Raap",
+          "inSeason": true,
+          "carbonDioxide": 0.1
+        }
       ]
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "example shop3",
       "location": {
         "city": "wissenkerke",
@@ -60,36 +83,19 @@
       ],
       "image": null,
       "lat": "51.5847742",
-      "lng": "3.7454419"
-    },
-    {
-      "id": 4,
-      "name": "example shop3",
-      "location": {
-        "city": "kruiningen",
-        "address": "einsteinstraat 2"
-      },
-      "phoneNumber": "9876475465",
-      "openingHours": {
-        "monday": "9:00-16:00",
-        "tuesday": "closed",
-        "wednesday": "10:00-17:00",
-        "thursday": "closed",
-        "friday": "closed",
-        "saturday": "closed",
-        "sunday": "closed"
-      },
-      "payingMethods": [
-        "Cash"
+      "lng": "3.7454419",
+      "products": [
+        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca"
       ],
-      "image": null,
-      "userID": "17",
-      "promotions": {
-        "description": null,
-        "endDate": null
-      },
-      "lat": "51.448154",
-      "lng": "4.0266196"
+      "productList": [
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        }
+      ]
     },
     {
       "id": 3,
@@ -123,34 +129,61 @@
         "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
         "161939ef-2c59-44ae-8086-f82989aeb8df",
         "89b1677e-d652-4a71-b4d5-7d4dd1f211ca"
+      ],
+      "productList": [
+        {
+          "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
+          "name": "carrot",
+          "fancyName": "Wortel",
+          "inSeason": true,
+          "carbonDioxide": 0.38
+        },
+        {
+          "id": "161939ef-2c59-44ae-8086-f82989aeb8df",
+          "name": "garlic",
+          "fancyName": "Knoflook",
+          "inSeason": true,
+          "carbonDioxide": 0.5
+        },
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        }
       ]
     },
     {
-      "id": 6,
-      "name": "Fresh Foods Market",
+      "id": 4,
+      "name": "example shop4",
       "location": {
-        "city": "Amsterdam",
-        "address": "123 Main Street"
+        "city": "kruiningen",
+        "address": "einsteinstraat 2"
       },
-      "phoneNumber": "0612345678",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "9 AM - 6 PM",
-        "tuesday": "9 AM - 6 PM",
-        "wednesday": "9 AM - 6 PM",
-        "thursday": "9 AM - 6 PM",
-        "friday": "9 AM - 8 PM",
-        "saturday": "10 AM - 5 PM",
-        "sunday": "Closed"
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
       },
       "payingMethods": [
-        "cash",
-        "card"
+        "Cash"
       ],
       "image": null,
-      "lat": "38.34987403025544",
-      "lng": "-94.58608826139799",
+      "userID": "17",
+      "promotions": {
+        "description": null,
+        "endDate": null
+      },
+      "lat": "51.448154",
+      "lng": "4.0266196",
       "products": [
-        "1edad049-0b6e-484f-8a51-dc1c8a297b21"
+        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca"
       ]
     }
   ]
