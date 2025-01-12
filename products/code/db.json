@@ -3,7 +3,7 @@
     "title": "List of products",
     "date": "November 2024"
   },
-  "co2": 0,
+  "co2": 1,
   "products": [
     {
       "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
@@ -31,7 +31,7 @@
       "name": "tomato",
       "fancyName": "Tomaat",
       "category": "fruit",
-      "carbonDioxideSaved": 1.0
+      "carbonDioxideSaved": 1
     },
     {
       "id": "c1a553ab-6448-4a26-9f9f-829ccc148f47",
@@ -87,7 +87,7 @@
       "name": "bell pepper",
       "fancyName": "Paprika",
       "category": "fruit",
-      "carbonDioxideSaved": 1.0
+      "carbonDioxideSaved": 1
     },
     {
       "id": "b4f8765a-1eff-4723-8ded-047fb6a1506a",
@@ -115,14 +115,14 @@
       "name": "orange",
       "fancyName": "Sinaasappel",
       "category": "fruit",
-      "carbonDioxideSaved": 1.0
+      "carbonDioxideSaved": 1
     },
     {
       "id": "d9f50507-daac-478e-ab6a-df709f18222f",
       "name": "cherry",
       "fancyName": "Kers",
       "category": "fruit",
-      "carbonDioxideSaved": 1.0
+      "carbonDioxideSaved": 1
     },
     {
       "id": "a674dd15-2096-48c5-8fd9-8c553169197f",
@@ -130,6 +130,13 @@
       "fancyName": "Spruitjes",
       "category": "leafy",
       "carbonDioxideSaved": 0.8
+    }
+  ],
+  "qrcodes": [
+    {
+      "id": "386397a5-74f1-4ad3-9a6f-75c95dc5ceac",
+      "productId": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
+      "used": false
     }
   ]
 }
