@@ -33,13 +33,6 @@ const shopsProxy = createProxyMiddleware({
     proxyReq: fixRequestBody,
   },
 });
-const recipesProxy = createProxyMiddleware({
-  target: 'http://recipes:3015',
-  changeOrigin: true,
-  on: {
-    proxyReq: fixRequestBody,
-  },
-});
 const eventsProxy = createProxyMiddleware({
   target: 'http://events:3016',
   changeOrigin: true,
@@ -51,9 +44,8 @@ const eventsProxy = createProxyMiddleware({
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-router.use('/microservice', cors(), microserviceProxy);
+router.use('/recipes', cors(), microserviceProxy);
 router.use('/shops', cors(), shopsProxy);
-router.use('/recipes', cors(), recipesProxy);
 router.use('/products', cors(), productsProxy);
 router.use('/markets', cors(), marketsProxy);
 router.use('/events', cors(), eventsProxy);

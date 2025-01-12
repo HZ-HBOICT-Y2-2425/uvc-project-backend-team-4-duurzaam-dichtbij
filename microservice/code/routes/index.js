@@ -1,5 +1,5 @@
 import express from 'express';
-import { getRecipes, getRecipeById, getRecipeIngredients, getRecipeInstructions } from '../controllers/recipeController.js';
+import { getRecipes, getRecipeById, getRecipeIngredients, getRecipeInstructions, getProductsForRecipe  } from '../controllers/recipeController.js';
 const router = express.Router();
 
 /**
@@ -162,5 +162,7 @@ router.get('/recipes/:id/instructions', getRecipeInstructions);
  *         description: Ingrediënten niet gevonden
  */
 router.get('/recipes/:id/ingredients', getRecipeIngredients);
+router.get("/recipes/:id/products", getProductsForRecipe); 
+
 
 export default router;

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createShop, deleteShop, responseShop, responseShops, updateShop } from '../controllers/shopController.js';
+import { createShop, deleteShop, responseShop, responseShops, updateShop, linkProductToShop, getShopProducts, unlinkProductFromShop, filterByProduct} from '../controllers/shopController.js';
 import { checkName } from '../middleware/exampleMiddleware.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -326,5 +326,13 @@ router.put('/shop/:id', checkName, updateShop);
  *         description: Winkel niet gevonden
  */
 router.delete('/shop/:id', checkName, deleteShop);
+
+router.put('/shops/:shopId/products/:productId', linkProductToShop);
+
+router.delete('/shops/:shopId/products/:productId', unlinkProductFromShop); // Unlink a product from a shop
+
+router.get('/shops/:shopId/products', getShopProducts); // Get all products linked to a shop
+
+router.get('/filter-by-product/:productId', filterByProduct);
 
 export default router;
