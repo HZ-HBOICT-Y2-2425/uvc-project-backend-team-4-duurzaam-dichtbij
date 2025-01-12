@@ -351,3 +351,12 @@ export async function unlinkProductFromShop(req, res) {
   }
 }
 
+export async function filterByProduct(req, res) {
+  const { productId } = req.params;
+  const filteredShops = shops.filter(shop => shop.products.includes(productId));
+  if (filteredShops.length > 0) {
+    res.json(filteredShops);
+  } else {
+    res.status(404).json({ message: "No shops found with the specified product" });
+  }
+};
