@@ -194,7 +194,7 @@ router.put('/products/:param', updateProduct);
  */
 router.delete('/products/:param', deleteProduct);
 
-router.post('/products/:productId/generate-qr',cors(),  generateQRCode);  // Genereer een QR-code voor een product
+router.post('/products/:id/generate-qr',cors(),  generateQRCode);  // Genereer een QR-code voor een product
 
 router.post("/products/by-ingredients", getProductsByIngredients);
 
