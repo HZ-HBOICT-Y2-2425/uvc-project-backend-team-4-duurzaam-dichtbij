@@ -27,7 +27,7 @@
       "image": null,
       "userID": "16",
       "promotions": {
-        "description": "bananen zijn 40% goedkoper",
+        "description": "wortelen zijn 40% goedkoper",
         "endDate": "31/12/2025"
       },
       "lat": "51.5006445",
@@ -36,11 +36,34 @@
         "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
         "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
         "c1a553ab-6448-4a26-9f9f-829ccc148f47"
+      ],
+      "productList": [
+        {
+          "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
+          "name": "carrot",
+          "fancyName": "Wortel",
+          "inSeason": true,
+          "carbonDioxide": 0.38
+        },
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        },
+        {
+          "id": "c1a553ab-6448-4a26-9f9f-829ccc148f47",
+          "name": "turnip",
+          "fancyName": "Raap",
+          "inSeason": true,
+          "carbonDioxide": 0.1
+        }
       ]
     },
     {
-      "id": 3,
-      "name": "example shop3",
+      "id": 2,
+      "name": "example shop2",
       "location": {
         "city": "wissenkerke",
         "address": "julianastraat 1"
@@ -65,41 +88,16 @@
         "description": null,
         "endDate": null
       },
-      "products": []
-    },
-    {
-      "id": 4,
-      "name": "example shop3",
-      "location": {
-        "city": "kruiningen",
-        "address": "einsteinstraat 2"
-      },
-      "phoneNumber": "9876475465",
-      "openingHours": {
-        "monday": "9:00-16:00",
-        "tuesday": "closed",
-        "wednesday": "10:00-17:00",
-        "thursday": "closed",
-        "friday": "closed",
-        "saturday": "closed",
-        "sunday": "closed"
-      },
-      "payingMethods": [
-        "Cash"
+      "products": [
+        "84d11d7d-bdfa-491f-b2dc-1af148ce8218",
+        "161939ef-2c59-44ae-8086-f82989aeb8df",
+        "7bef42b3-ea61-486d-ad64-3746ff69bc6c"
       ],
-      "image": null,
-      "userID": "17",
-      "promotions": {
-        "description": null,
-        "endDate": null
-      },
-      "lat": "51.448154",
-      "lng": "4.0266196",
-      "products": []
+      "productList": []
     },
     {
       "id": 3,
-      "name": "example shop3",
+      "name": "De Verse Boer",
       "location": {
         "city": "middelburg",
         "address": "kruitmolenlaan 60"
@@ -128,40 +126,373 @@
       "products": [
         "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
         "161939ef-2c59-44ae-8086-f82989aeb8df",
-        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca"
+        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+        "35b2063c-457b-463b-8720-a13100b9bcc9",
+        "1edad049-0b6e-484f-8a51-dc1c8a297b21",
+        "a674dd15-2096-48c5-8fd9-8c553169197f"
+      ],
+      "productList": [
+        {
+          "id": "7bef42b3-ea61-486d-ad64-3746ff69bc6c",
+          "name": "carrot",
+          "fancyName": "Wortel",
+          "inSeason": true,
+          "carbonDioxide": 0.38
+        },
+        {
+          "id": "161939ef-2c59-44ae-8086-f82989aeb8df",
+          "name": "garlic",
+          "fancyName": "Knoflook",
+          "inSeason": true,
+          "carbonDioxide": 0.5
+        },
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        },
+        {
+          "id": "35b2063c-457b-463b-8720-a13100b9bcc9",
+          "name": "broccoli",
+          "fancyName": "Broccoli",
+          "inSeason": true,
+          "carbonDioxide": 0.62
+        },
+        {
+          "id": "1edad049-0b6e-484f-8a51-dc1c8a297b21",
+          "name": "honey",
+          "fancyName": "Honing",
+          "inSeason": true,
+          "carbonDioxide": 0.76
+        },
+        {
+          "id": "a674dd15-2096-48c5-8fd9-8c553169197f",
+          "name": "brussels sprouts",
+          "fancyName": "Spruitjes",
+          "inSeason": true,
+          "carbonDioxide": 0.61
+        }
       ]
     },
     {
-      "id": 6,
-      "name": "Fresh Foods Market",
+      "id": 4,
+      "name": "Hoeveproducten Zeeland",
       "location": {
-        "city": "Amsterdam",
-        "address": "123 Main Street"
+        "city": "kruiningen",
+        "address": "einsteinstraat 2"
       },
-      "phoneNumber": "0612345678",
+      "phoneNumber": "9876475465",
       "openingHours": {
-        "monday": "9 AM - 6 PM",
-        "tuesday": "9 AM - 6 PM",
-        "wednesday": "9 AM - 6 PM",
-        "thursday": "9 AM - 6 PM",
-        "friday": "9 AM - 8 PM",
-        "saturday": "10 AM - 5 PM",
-        "sunday": "Closed"
+        "monday": "9:00-16:00",
+        "tuesday": "closed",
+        "wednesday": "10:00-17:00",
+        "thursday": "closed",
+        "friday": "closed",
+        "saturday": "closed",
+        "sunday": "closed"
       },
       "payingMethods": [
-        "cash",
-        "card"
+        "Cash"
       ],
       "image": null,
-      "lat": "38.34987403025544",
-      "lng": "-94.58608826139799",
+      "userID": "17",
       "promotions": {
         "description": null,
         "endDate": null
       },
+      "lat": "51.448154",
+      "lng": "4.0266196",
       "products": [
-        "1edad049-0b6e-484f-8a51-dc1c8a297b21"
+        "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+        "694480e0-cfa7-4be1-ade0-4d6992f5659f",
+        "2b0f85de-6acc-456b-af9d-8e2fed127ba2",
+        "700a4b00-01ae-4e3c-92f6-4972bd811a0a"
+      ],
+      "productList": [
+        {
+          "id": "89b1677e-d652-4a71-b4d5-7d4dd1f211ca",
+          "name": "celery",
+          "fancyName": "Selderij",
+          "inSeason": true,
+          "carbonDioxide": 0.27
+        },
+        {
+          "id": "694480e0-cfa7-4be1-ade0-4d6992f5659f",
+          "name": "asparagus",
+          "fancyName": "Asperge",
+          "inSeason": true,
+          "carbonDioxide": 0.41
+        },
+        {
+          "id": "2b0f85de-6acc-456b-af9d-8e2fed127ba2",
+          "name": "kale",
+          "fancyName": "Boerenkool",
+          "inSeason": true,
+          "carbonDioxide": 0.61
+        },
+        {
+          "id": "700a4b00-01ae-4e3c-92f6-4972bd811a0a",
+          "name": "bell pepper",
+          "fancyName": "Paprika",
+          "inSeason": true,
+          "carbonDioxide": 1.32
+        }
       ]
+    },
+    {
+      "id": 5,
+      "name": "Boerderij 't Schuurke",
+      "location": {
+        "city": "Middelburg",
+        "address": "Lange Delft 12"
+      },
+      "phoneNumber": "0118665544",
+      "openingHours": {
+        "monday": "9:00-18:00",
+        "tuesday": "9:00-18:00",
+        "wednesday": "9:00-18:00",
+        "thursday": "9:00-20:00",
+        "friday": "9:00-18:00",
+        "saturday": "10:00-17:00",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Credit Card",
+        "Pinpas"
+      ],
+      "image": null,
+      "userID": "18",
+      "promotions": {
+        "description": "20% korting op alle kleding",
+        "endDate": "2025-01-31"
+      },
+      "lat": "51.501033",
+      "lng": "3.610601",
+      "products": []
+    },
+    {
+      "id": 6,
+      "name": "Landwinkel De Korenaar",
+      "location": {
+        "city": "Veere",
+        "address": "Kaai 25"
+      },
+      "phoneNumber": "0118667755",
+      "openingHours": {
+        "monday": "closed",
+        "tuesday": "10:00-16:00",
+        "wednesday": "10:00-16:00",
+        "thursday": "10:00-16:00",
+        "friday": "10:00-16:00",
+        "saturday": "10:00-17:00",
+        "sunday": "12:00-16:00"
+      },
+      "payingMethods": [
+        "Cash",
+        "Pinpas"
+      ],
+      "image": null,
+      "userID": "19",
+      "promotions": {
+        "description": "Gratis cadeauverpakking bij aankopen boven €20",
+        "endDate": "2025-02-15"
+      },
+      "lat": "51.546817",
+      "lng": "3.667635",
+      "products": []
+    },
+    {
+      "id": 7,
+      "name": "Boer & Goed",
+      "location": {
+        "city": "Zoutelande",
+        "address": "Langstraat 8"
+      },
+      "phoneNumber": "0118669988",
+      "openingHours": {
+        "monday": "11:00-17:00",
+        "tuesday": "11:00-17:00",
+        "wednesday": "11:00-17:00",
+        "thursday": "11:00-17:00",
+        "friday": "11:00-17:00",
+        "saturday": "11:00-17:00",
+        "sunday": "11:00-16:00"
+      },
+      "payingMethods": [
+        "Cash",
+        "Credit Card",
+        "Pinpas",
+        "Apple Pay"
+      ],
+      "image": null,
+      "userID": "20",
+      "promotions": {
+        "description": "2e artikel halve prijs",
+        "endDate": "2025-03-01"
+      },
+      "lat": "51.496984",
+      "lng": "3.493320",
+      "products": []
+    },
+    {
+      "id": 8,
+      "name": "Het Melkhuisje",
+      "location": {
+        "city": "Goes",
+        "address": "Oostsingel 5"
+      },
+      "phoneNumber": "0113234456",
+      "openingHours": {
+        "monday": "closed",
+        "tuesday": "10:00-16:00",
+        "wednesday": "10:00-16:00",
+        "thursday": "10:00-16:00",
+        "friday": "10:00-18:00",
+        "saturday": "10:00-17:00",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Pinpas"
+      ],
+      "image": null,
+      "userID": "21",
+      "promotions": {
+        "description": "5% korting op vers brood",
+        "endDate": "2025-02-10"
+      },
+      "lat": "51.504174",
+      "lng": "3.890095",
+      "products": []
+    },
+    {
+      "id": 9,
+      "name": "Zilte Zaligheden",
+      "location": {
+        "city": "Vlissingen",
+        "address": "Breestraat 14"
+      },
+      "phoneNumber": "0118412345",
+      "openingHours": {
+        "monday": "10:00-17:00",
+        "tuesday": "10:00-17:00",
+        "wednesday": "10:00-17:00",
+        "thursday": "10:00-17:00",
+        "friday": "10:00-17:00",
+        "saturday": "10:00-16:00",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Pinpas",
+        "Credit Card"
+      ],
+      "image": null,
+      "userID": "22",
+      "promotions": {
+        "description": "10% korting op alle boeken",
+        "endDate": "2025-03-15"
+      },
+      "lat": "51.447436",
+      "lng": "3.582894",
+      "products": []
+    },
+    {
+      "id": 10,
+      "name": "De Zeeuwse Schuur",
+      "location": {
+        "city": "Renesse",
+        "address": "Korte Reke 10"
+      },
+      "phoneNumber": "0111445566",
+      "openingHours": {
+        "monday": "9:00-18:00",
+        "tuesday": "9:00-18:00",
+        "wednesday": "9:00-18:00",
+        "thursday": "9:00-18:00",
+        "friday": "9:00-18:00",
+        "saturday": "9:00-17:00",
+        "sunday": "10:00-16:00"
+      },
+      "payingMethods": [
+        "Cash",
+        "Pinpas"
+      ],
+      "image": null,
+      "userID": "23",
+      "promotions": {
+        "description": "Huur 2 fietsen, krijg 1 gratis",
+        "endDate": "2025-04-01"
+      },
+      "lat": "51.734209",
+      "lng": "3.772312",
+      "products": []
+    },
+    {
+      "id": 11,
+      "name": "Puur van de Boer",
+      "location": {
+        "city": "Breskens",
+        "address": "Kaai 8"
+      },
+      "phoneNumber": "0117412345",
+      "openingHours": {
+        "monday": "closed",
+        "tuesday": "9:00-17:00",
+        "wednesday": "9:00-17:00",
+        "thursday": "9:00-17:00",
+        "friday": "9:00-17:00",
+        "saturday": "9:00-16:00",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Pinpas"
+      ],
+      "image": null,
+      "userID": "24",
+      "promotions": {
+        "description": "Verse mosselen met korting",
+        "endDate": "2025-02-20"
+      },
+      "lat": "51.400786",
+      "lng": "3.552899",
+      "products": []
+    },
+    {
+      "id": 12,
+      "name": "Fruit & Groentehof",
+      "location": {
+        "city": "Kapelle",
+        "address": "Stationsstraat 6"
+      },
+      "phoneNumber": "0113366544",
+      "openingHours": {
+        "monday": "9:00-17:30",
+        "tuesday": "9:00-17:30",
+        "wednesday": "9:00-17:30",
+        "thursday": "9:00-17:30",
+        "friday": "9:00-17:30",
+        "saturday": "9:00-16:00",
+        "sunday": "closed"
+      },
+      "payingMethods": [
+        "Cash",
+        "Pinpas",
+        "Credit Card"
+      ],
+      "image": null,
+      "userID": "25",
+      "promotions": {
+        "description": "Gratis vaas bij aankoop van €50 aan bloemen",
+        "endDate": "2025-02-28"
+      },
+      "lat": "51.488375",
+      "lng": "3.966917",
+      "products": []
     }
   ]
 }

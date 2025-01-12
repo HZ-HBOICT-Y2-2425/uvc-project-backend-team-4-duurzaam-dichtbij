@@ -19,7 +19,87 @@
       "comments": [],
       "lat": "51.5073265",
       "lng": "3.8817418"
+    },
+    {
+      "id": 2,
+      "name": "weekmarktmiddelburg",
+      "dayOfWeek": "Donderdag",
+      "startTime": "09:00",
+      "endTime": "16:00",
+      "description": "Middelburg is een echte marktstad en druk bezocht vanuit de gehele regio. De weekmarkt in Middelburg is elke donderdag van 09:00 - 16:00 en zaterdag van 07:30 - 16:00 geopend.",
+      "location": {
+        "city": "Middelburg",
+        "address": "Markt 65"
+      },
+      "verified": "true",
+      "comments": [],
+      "lat": "51.498344",
+      "lng": "3.611112"
+    },
+    {
+      "id": 3,
+      "name": "weekmarktVlissingen",
+      "dayOfWeek": "Vrijdag",
+      "startTime": "08:00",
+      "endTime": "16:00",
+      "description": "Deze bruisende markt herbergt meer dan 30 kramen en marktwagens, gevuld met een gevarieerd aanbod van zowel voedsel als non-food producten, waardoor er voor ieder wat wils is.",
+      "location": {
+        "city": "Vlisssingen",
+        "address": "Spuistraat & Lange Zelke"
+      },
+      "verified": "true",
+      "comments": [],
+      "lat": "51.443208",
+      "lng": "3.572539"
+    },
+    {
+      "id": 4,
+      "name": "weekmarktZoutelanden",
+      "dayOfWeek": "Dinsdag",
+      "startTime": "12:00",
+      "endTime": "19:00",
+      "description": "De markt bestaat uit verschillende kramen, verspreid over het Willibrordusplein en de Langstraat. Zodra je de eerste stap op deze weekmarkt zet, komen de verschillende geuren en smaken je al tegemoet.",
+      "location": {
+        "city": "Zoutelande",
+        "address": "Langstraat"
+      },
+      "verified": "true",
+      "comments": [],
+      "lat": "51.500123",
+      "lng": "3.482936"
+    },
+    {
+      "id": 5,
+      "name": "weekmarktDomburg",
+      "dayOfWeek": "Maandag",
+      "startTime": "10:00",
+      "endTime": "18:00",
+      "description": "Op de markt vindt u altijd leuke aanbiedingen, verse seizoensprodukten en unieke specialiteiten. Op de markt vindt u diverse producten: sieraden, kleding, parfum, wenskaarten, strandlakens, boeken, vis, wafels, snoep, noten, lederwaren, poffertjes en nog veel meer!",
+      "location": {
+        "city": "Dombrug",
+        "address": "Ooststraat"
+      },
+      "verified": "true",
+      "comments": [],
+      "lat": "51.563064",
+      "lng": "3.496244"
+    },
+    {
+      "id": 6,
+      "name": "weekmarktHulst",
+      "dayOfWeek": "Maandag",
+      "startTime": "08:00",
+      "endTime": "16:00",
+      "description": "Hulst profileert zich als de ”meest Vlaamse stad” van Nederland. Dit is dankzij de bourgondische elementen en sfeer die de stad brengt. Met een gezellige markt, veel horeca, veel Vlaams publiek en veel (monumentale) bezienswaardigheden maakt dat Hulst een leuke stad is om te vertoeven.",
+      "location": {
+        "city": "Hulst",
+        "address": "Gentsestraat"
+      },
+      "verified": "true",
+      "comments": [],
+      "lat": "51.279876",
+      "lng": "4.053274"
     }
   ],
-  "nextId": 3
+  "nextId": 8
 }
