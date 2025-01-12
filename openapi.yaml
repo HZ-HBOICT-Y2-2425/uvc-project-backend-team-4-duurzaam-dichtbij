@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Events API
-  description: API voor het beheren van evenementen.
+  title: Duurzaam Dichtbij API
+  description: API voor de Duurzaam Dichtbij app.
   version: 1.0.0
 paths:
   /:
@@ -177,16 +177,6 @@ paths:
           description: Evenement succesvol verwijderd
         404:
           description: Evenement niet gevonden
-    get:
-      summary: Controleer of de market-microservice draait
-      responses:
-        200:
-          description: Microservice draait correct
-          content:
-            application/json:
-              schema:
-                type: string
-                example: "The markets microservice is running"
   /markets:
     post:
       summary: Maak een nieuwe markt aan
@@ -348,16 +338,6 @@ paths:
           description: Markt succesvol verwijderd
         404:
           description: Markt niet gevonden
-    get:
-      summary: Controleer of de recipe-microservice draait
-      responses:
-        200:
-          description: Microservice draait correct
-          content:
-            application/json:
-              schema:
-                type: string
-                example: hi
   /recipes:
     get:
       summary: Haal alle recepten op
