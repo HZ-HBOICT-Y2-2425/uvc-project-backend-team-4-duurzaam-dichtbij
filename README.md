@@ -20,10 +20,6 @@ You can change the ports of your server via `variables.env`
 - Shops: microservice running on port: 3015
 - Events: microservice running on port: 3016
 
-## Containers
-
-Check the readme files of each container to understand the setup
-
 ## API Documentation
 
 1. ga naar events\code
