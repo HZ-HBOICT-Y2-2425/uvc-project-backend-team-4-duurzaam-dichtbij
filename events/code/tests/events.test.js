@@ -38,8 +38,8 @@ describe('Event Controller', () => {
     const newEvent = {
       name: 'Event 1',
       type: 'Boodschappen',
-      startDate: '2024-12-30T13:00:00.000Z',
-      endDate: '2024-12-30T17:00:00.000Z',
+      startDate: '2025-12-30T13:00:00.000Z',
+      endDate: '2025-12-30T17:00:00.000Z',
       description: 'A great event',
       location: { city: 'City1', address: 'Street1' }
     };
@@ -66,8 +66,8 @@ describe('Event Controller', () => {
     const event = {
       name: 'Event 1',
       type: 'Kookgroep',
-      startDate: '2024-12-30T13:00:00.000Z',
-      endDate: '2024-12-30T17:00:00.000Z',
+      startDate: '2025-12-30T13:00:00.000Z',
+      endDate: '2025-12-30T17:00:00.000Z',
       description: 'A great event',
       location: { city: 'City1', address: 'Street1' }
     };
@@ -86,8 +86,8 @@ describe('Event Controller', () => {
     const updatedEvent = {
       name: 'Event 2',
       type: 'Boodschappen',
-      startDate: '2024-12-30T17:00:00.000Z',
-      endDate: '2024-12-30T23:00:00.000Z',
+      startDate: '2026-12-30T17:00:00.000Z',
+      endDate: '2026-12-30T23:00:00.000Z',
       description: 'An even better event',
       location: { city: 'City2', address: 'Street2' }
     };
@@ -107,8 +107,8 @@ describe('Event Controller', () => {
     const event = {
       name: 'Event 1',
       type: 'Boodschappen',
-      startDate: '2024-12-30T13:00:00.000Z',
-      endDate: '2024-12-30T17:00:00.000Z',
+      startDate: '2025-12-30T13:00:00.000Z',
+      endDate: '2025-12-30T17:00:00.000Z',
       description: 'A great event',
       location: { city: 'City1', address: 'Street1' }
     };
