@@ -1,0 +1,32 @@
+name: Tests from markets microservice
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0 # Use a version suitable for all microservices
+
+      # Discover 'code' directories and run ESLint
+      - name: Run tests in market microservice
+        run: |
+          cd markets/code
+          npm install
+          npm install jest
+          npm test
+          
+          

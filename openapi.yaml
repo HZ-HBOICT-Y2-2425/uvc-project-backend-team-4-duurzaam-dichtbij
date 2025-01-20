@@ -1,0 +1,863 @@
+openapi: 3.0.0
+info:
+  title: Duurzaam Dichtbij API
+  description: API voor de Duurzaam Dichtbij app.
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Controleer of de microservice draait
+      responses:
+        200:
+          description: De microservice draait correct
+          content:
+            application/json:
+              schema:
+                type: string
+  /events:
+    post:
+      summary: Maak een nieuw evenement aan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Naam van het evenement
+                type:
+                  type: string
+                  description: Type van het evenement
+                startDate:
+                  type: string
+                  format: date-time
+                  description: Startdatum van het evenement
+                endDate:
+                  type: string
+                  format: date-time
+                  description: Einddatum van het evenement
+                description:
+                  type: string
+                  description: Beschrijving van het evenement
+                location:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      description: Stad van het evenement
+                    address:
+                      type: string
+                      description: Adres van het evenement
+      responses:
+        201:
+          description: Evenement succesvol aangemaakt
+        400:
+          description: Fout bij het aanmaken van evenement (bijvoorbeeld ontbrekende velden)
+    get:
+      summary: Haal alle evenementen op
+      responses:
+        200:
+          description: Lijst van alle evenementen
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: ID van het evenement
+                    name:
+                      type: string
+                      description: Naam van het evenement
+                    type:
+                      type: string
+                      description: Type van het evenement
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: Startdatum van het evenement
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: Einddatum van het evenement
+                    description:
+                      type: string
+                      description: Beschrijving van het evenement
+                    location:
+                      type: object
+                      properties:
+                        city:
+                          type: string
+                          description: Stad van het evenement
+                        address:
+                          type: string
+                          description: Adres van het evenement
+        404:
+          description: Geen evenementen gevonden
+  /event/{param}:
+    get:
+      summary: Haal details op van een specifiek evenement
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: Een unieke parameter (bijvoorbeeld naam of ID)
+      responses:
+        200:
+          description: Details van het specifieke evenement
+        404:
+          description: Evenement niet gevonden
+  /event/{id}:
+    put:
+      summary: Update een bestaand evenement
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID van het evenement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: De nieuwe naam van het evenement
+                type:
+                  type: string
+                  description: Het nieuwe type van het evenement
+                startDate:
+                  type: string
+                  format: date-time
+                  description: De nieuwe startdatum van het evenement
+                endDate:
+                  type: string
+                  format: date-time
+                  description: De nieuwe einddatum van het evenement
+                description:
+                  type: string
+                  description: De nieuwe beschrijving van het evenement
+                location:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      description: De nieuwe stad van het evenement
+                    address:
+                      type: string
+                      description: Het nieuwe adres van het evenement
+      responses:
+        200:
+          description: Evenement succesvol geüpdatet
+        400:
+          description: Ongeldige invoer
+        404:
+          description: Evenement niet gevonden
+    delete:
+      summary: Verwijder een evenement
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID van het evenement
+      responses:
+        200:
+          description: Evenement succesvol verwijderd
+        404:
+          description: Evenement niet gevonden
+  /markets:
+    post:
+      summary: Maak een nieuwe markt aan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Naam van de markt
+                dayOfWeek:
+                  type: string
+                  description: Dag van de week waarop de markt plaatsvindt (bijv. maandag, dinsdag)
+                startTime:
+                  type: string
+                  format: time
+                  description: Starttijd van de markt in HH:mm formaat
+                endTime:
+                  type: string
+                  format: time
+                  description: Eindtijd van de markt in HH:mm formaat
+                description:
+                  type: string
+                  description: Beschrijving van de markt
+                location:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      description: Stad van de markt
+                    address:
+                      type: string
+                      description: Adres van de markt
+      responses:
+        201:
+          description: Markt succesvol aangemaakt
+        400:
+          description: Ongeldige invoer
+    get:
+      summary: Haal alle markten op
+      responses:
+        200:
+          description: Een lijst van markten
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: Unieke ID van de markt
+                    name:
+                      type: string
+                      description: Naam van de markt
+                    location:
+                      type: string
+                      description: Locatie van de markt
+                    dayOfWeek:
+                      type: string
+                      description: Dag van de week waarop de markt plaatsvindt
+                    startTime:
+                      type: string
+                      format: time
+                      description: Starttijd van de markt
+                    endTime:
+                      type: string
+                      format: time
+                      description: Eindtijd van de markt
+                    description:
+                      type: string
+                      description: Beschrijving van de markt
+                    verified:
+                      type: boolean
+                      description: Of de markt geverifieerd is
+        404:
+          description: Geen markten gevonden
+  /market/{param}:
+    get:
+      summary: Haal details op van een specifieke markt
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: Unieke parameter van de markt (bijv. naam of ID)
+      responses:
+        200:
+          description: Details van de markt
+        404:
+          description: Markt niet gevonden
+  /market/{id}:
+    put:
+      summary: Update een markt
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID van de markt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: De nieuwe naam van de markt
+                location:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      description: De nieuwe stad van de markt
+                    address:
+                      type: string
+                      description: Het nieuwe adres van de markt
+                dayOfWeek:
+                  type: string
+                  description: Nieuwe dag van de week
+                startTime:
+                  type: string
+                  format: time
+                  description: Nieuwe starttijd van de markt
+                endTime:
+                  type: string
+                  format: time
+                  description: Nieuwe eindtijd van de markt
+                description:
+                  type: string
+                  description: Nieuwe beschrijving van de markt
+                verified:
+                  type: boolean
+                  description: Of de markt geverifieerd is
+      responses:
+        200:
+          description: Markt succesvol geüpdatet
+        404:
+          description: Markt niet gevonden
+    delete:
+      summary: Verwijder een markt
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID van de markt
+      responses:
+        200:
+          description: Markt succesvol verwijderd
+        404:
+          description: Markt niet gevonden
+  /recipes:
+    get:
+      summary: Haal alle recepten op
+      parameters:
+        - in: query
+          name: query
+          required: false
+          schema:
+            type: string
+          description: Zoekterm om recepten op te halen
+        - in: query
+          name: number
+          required: false
+          schema:
+            type: integer
+          description: Aantal recepten om op te halen (standaard 10)
+      responses:
+        200:
+          description: Een lijst van alle recepten
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unieke ID van het recept
+                        title:
+                          type: string
+                          description: Naam van het recept
+                        description:
+                          type: string
+                          description: Beschrijving van het recept
+  /recipes/{id}:
+    get:
+      summary: Haal details van een specifiek recept op
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: De unieke ID van het recept
+      responses:
+        200:
+          description: Details van het recept
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unieke ID van het recept
+                  title:
+                    type: string
+                    description: Naam van het recept
+                  description:
+                    type: string
+                    description: Beschrijving van het recept
+        404:
+          description: Recept niet gevonden
+  /recipes/{id}/instructions:
+    get:
+      summary: Haal de instructies van een specifiek recept op
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: De unieke ID van het recept
+      responses:
+        200:
+          description: Instructies van het recept
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  instructions:
+                    type: array
+                    items:
+                      type: string
+                    description: Stappen van de instructies
+        404:
+          description: Instructies niet gevonden
+  /recipes/{id}/ingredients:
+    get:
+      summary: Haal de ingrediënten van een specifiek recept op
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: De unieke ID van het recept
+      responses:
+        200:
+          description: Ingrediënten van het recept
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ingredients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Naam van het ingrediënt
+                        quantity:
+                          type: string
+                          description: Hoeveelheid van het ingrediënt
+        404:
+          description: Ingrediënten niet gevonden
+
+  /products:
+    post:
+      summary: Maak een nieuw product aan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Naam van het product
+                inSeason:
+                  type: boolean
+                  description: Seizoenstatus van het product
+                carbonDioxide:
+                  type: number
+                  description: CO2-uitstoot van het product
+      responses:
+        201:
+          description: Product succesvol aangemaakt
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Product created successfully.
+                  product:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Unieke ID van het product
+                      name:
+                        type: string
+                        description: Naam van het product
+                      inSeason:
+                        type: boolean
+                        description: Seizoenstatus van het product
+                      carbonDioxide:
+                        type: number
+                        description: CO2-uitstoot van het product
+    get:
+      summary: Haal alle producten op
+      responses:
+        200:
+          description: Een lijst van alle producten
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unieke ID van het product
+                    name:
+                      type: string
+                      description: Naam van het product
+                    inSeason:
+                      type: boolean
+                      description: Seizoenstatus van het product
+                    carbonDioxide:
+                      type: number
+                      description: CO2-uitstoot van het product
+  /products/{param}:
+    get:
+      summary: Haal details van een specifiek product op
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: De unieke ID of naam van het product
+      responses:
+        200:
+          description: Details van het product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unieke ID van het product
+                  name:
+                    type: string
+                    description: Naam van het product
+                  inSeason:
+                    type: boolean
+                    description: Seizoenstatus van het product
+                  carbonDioxide:
+                    type: number
+                    description: CO2-uitstoot van het product
+        404:
+          description: Product niet gevonden
+    put:
+      summary: Update een specifiek product
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: De unieke ID of naam van het product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nieuwe naam van het product
+                inSeason:
+                  type: boolean
+                  description: Nieuwe seizoenstatus van het product
+                carbonDioxide:
+                  type: number
+                  description: Nieuwe CO2-uitstoot van het product
+      responses:
+        200:
+          description: Product succesvol bijgewerkt
+        404:
+          description: Product niet gevonden
+    delete:
+      summary: Verwijder een specifiek product
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: De unieke ID of naam van het product
+      responses:
+        200:
+          description: Product succesvol verwijderd
+        404:
+          description: Product niet gevonden
+  /shops:
+    get:
+      summary: Haal alle winkels op
+      responses:
+        '200':
+          description: Een lijst van winkels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      description: Unieke ID van de winkel
+                    name:
+                      type: string
+                      description: Naam van de winkel
+                    location:
+                      type: object
+                      properties:
+                        city:
+                          type: string
+                          description: Stad waar de winkel is gevestigd
+                        address:
+                          type: string
+                          description: Adres van de winkel
+                    phoneNumber:
+                      type: string
+                      description: Telefoonnummer van de winkel
+                    openingHours:
+                      type: object
+                      properties:
+                        monday:
+                          type: string
+                          description: Openingstijd maandag
+                        tuesday:
+                          type: string
+                          description: Openingstijd dinsdag
+                        wednesday:
+                          type: string
+                          description: Openingstijd woensdag
+                        thursday:
+                          type: string
+                          description: Openingstijd donderdag
+                        friday:
+                          type: string
+                          description: Openingstijd vrijdag
+                        saturday:
+                          type: string
+                          description: Openingstijd zaterdag
+                        sunday:
+                          type: string
+                          description: Openingstijd zondag
+    post:
+      summary: Maak een nieuwe winkel aan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Naam van de winkel
+                location:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      description: Stad waar de winkel is gevestigd
+                    address:
+                      type: string
+                      description: Adres van de winkel
+                phoneNumber:
+                  type: string
+                  description: Telefoonnummer van de winkel
+                openingHours:
+                  type: object
+                  properties:
+                    monday:
+                      type: string
+                      description: Openingstijd maandag
+                    tuesday:
+                      type: string
+                      description: Openingstijd dinsdag
+                    wednesday:
+                      type: string
+                      description: Openingstijd woensdag
+                    thursday:
+                      type: string
+                      description: Openingstijd donderdag
+                    friday:
+                      type: string
+                      description: Openingstijd vrijdag
+                    saturday:
+                      type: string
+                      description: Openingstijd zaterdag
+                    sunday:
+                      type: string
+                      description: Openingstijd zondag
+                payingMethods:
+                  type: array
+                  items:
+                    type: string
+                  description: Betalingsmethoden van de winkel
+                userID:
+                  type: string
+                  description: De ID van de gebruiker die de winkel aanmaakt
+      responses:
+        '201':
+          description: Winkel succesvol aangemaakt
+  /uploads/{filename}:
+    get:
+      summary: Download een bestand uit uploads
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+          description: Naam van het te downloaden bestand
+      responses:
+        '200':
+          description: Bestand succesvol gedownload
+        '404':
+          description: Bestand niet gevonden
+  /shop/{param}:
+    get:
+      summary: Haal details op van een specifieke winkel
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: De unieke ID of naam van de winkel
+      responses:
+        '200':
+          description: Details van de winkel
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Unieke ID van de winkel
+                  name:
+                    type: string
+                    description: Naam van de winkel
+                  location:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                        description: Stad waar de winkel is gevestigd
+                      address:
+                        type: string
+                        description: Adres van de winkel
+                  phoneNumber:
+                    type: string
+                    description: Telefoonnummer van de winkel
+                  openingHours:
+                    type: object
+                    properties:
+                      monday:
+                        type: string
+                      tuesday:
+                        type: string
+                      wednesday:
+                        type: string
+                      thursday:
+                        type: string
+                      friday:
+                        type: string
+                      saturday:
+                        type: string
+                      sunday:
+                        type: string
+        '404':
+          description: Winkel niet gevonden
+    put:
+      summary: Update een winkel
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: De unieke ID van de winkel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                    address:
+                      type: string
+                phoneNumber:
+                  type: string
+                openingHours:
+                  type: object
+                  properties:
+                    monday:
+                      type: string
+                    tuesday:
+                      type: string
+                    wednesday:
+                      type: string
+                    thursday:
+                      type: string
+                    friday:
+                      type: string
+                    saturday:
+                      type: string
+                    sunday:
+                      type: string
+                payingMethods:
+                  type: array
+                  items:
+                    type: string
+                userID:
+                  type: string
+      responses:
+        '200':
+          description: Winkel succesvol geüpdatet
+        '404':
+          description: Winkel niet gevonden
+    delete:
+      summary: Verwijder een winkel
+      parameters:
+        - in: path
+          name: param
+          required: true
+          schema:
+            type: string
+          description: De unieke ID van de winkel
+      responses:
+        '200':
+          description: Winkel succesvol verwijderd
+        '404':
+          description: Winkel niet gevonden
+
