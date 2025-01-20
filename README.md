@@ -1,4 +1,4 @@
-# Backend example
+# Duurzaam Dichtbij - Backend
 
 In this backend example for a project, a folder is created for each micoservice. 
 
@@ -9,23 +9,23 @@ In this backend example for a project, a folder is created for each micoservice.
 
 We use ES6 module system to import and export modules.
 
-## Variables.env
-
-We save credentials to other services in a `variables.env` file. This file is included in this template. However, it is common use not to include it in a public repository. There are some default key value pairs included to demonstrate its working.
-
 ## Ports
 
 You can change the ports of your server via `variables.env`
 
-- Microservice: sample microservice running on port:3011
-- Apigateway: sample API Gateway - running on port:3010
+- Apigateway: gateway running on port: 3010
+- Recipes: microservice running on port: 3011
+- Markets: microservice running on port: 3012
+- Products: microservice running on port: 3013
+- Shops: microservice running on port: 3015
+- Events: microservice running on port: 3016
 
 ## Containers
 
 Check the readme files of each container to understand the setup
 
+## API Documentation
 
-## api docu
 1. ga naar events\code
 2. doe npm run dev
 3. http://localhost:3016/api-docs
