@@ -4,6 +4,10 @@ import { getDB } from "./eventController.js";
 const db = getDB();
 const events = db.data.events;
 
+export function stfuRemoveThisFunction() {
+    console.log('wtf am I doing here?');
+}
+
 export async function createComment(req, res) {
     const event = events.find(event => event.id == req.params.id);
     if (event === undefined) {
