@@ -19,6 +19,7 @@ export default [
             "sonarjs/no-duplicate-string": "warn", // Avoid repeated string literals
             "sonarjs/no-identical-functions": "error", // Prevent identical functions
             "sonarjs/cognitive-complexity": ["warn", 15], // Warn for high cognitive complexity
+            "complexity": ["warn", { "max": 15 }] // Warn for cyclomatic complexity exceeding 10
         }
     }
 ];
